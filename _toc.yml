@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: Pengenalan bahasa pemrograman python untuk pengolahan data meteorologi maritim
+- file: Pembuatan produk klimatologis maritim perairan untuk wilayah Provinsi
+- file: Pengolahan Klimatologis Data Pengamatan Meteorologi Maritim
