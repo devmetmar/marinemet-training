@@ -2,8 +2,11 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: home
 chapters:
-- file: Pengenalan bahasa pemrograman python untuk pengolahan data meteorologi maritim
-- file: Pembuatan produk klimatologis maritim perairan untuk wilayah Provinsi
-- file: Pengolahan Klimatologis Data Pengamatan Meteorologi Maritim
+- file: intro-python/intro-python
+  sections:
+  - file: intro-python/basic-python
+- file: produk-klim/intro-klim-product
+  sections:
+  - file: klim-product/intro-xarray
