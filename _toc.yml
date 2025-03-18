@@ -4,9 +4,9 @@
 format: jb-book
 root: home
 chapters:
-  - file: intro-python/intro-python
-    sections:
-    - file: intro-python/basic-python
-  - file: klim-product/intro-klim-product
-    sections:
-    - file: klim-product/intro-xarray
+- file: intro-python/intro-python
+  sections:
+  - file: intro-python/basic-python
+- file: klim-product/intro-klim-product
+  sections:
+  - file: klim-product/intro-xarray
