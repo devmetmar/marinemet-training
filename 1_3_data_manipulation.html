@@ -1,0 +1,2407 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tabular data manipulation &#8212; Pelatihan Pengolahan Data Meteorologi Maritim</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_3_data_manipulation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data visualization" href="1_4_data_visualization.html" />
+    <link rel="prev" title="Python scientific libraries" href="1_2_python_libraries.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Pelatihan Pengolahan Data Meteorologi Maritim - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Pelatihan Pengolahan Data Meteorologi Maritim - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="1_0_intro.html">Pengenalan bahasa pemrograman python untuk pengolahan data meteorologi maritim</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_1_intro_python.html">Dasar-dasar pemrograman Python, package manager, dan IDE (Integrated Development Environment)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_2_python_libraries.html">Python scientific libraries</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tabular data manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_4_data_visualization.html">Data visualization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="2_0_intro.html">Pembuatan Produk Klimatologis Maritim Perairan untuk Wilayah Provinsi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_1_data_processing_xarray.html">Pengolahan data multidimensi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2_geospatial_data_visualization.html">Visualisasi data geospasial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_3_climatology_product.html">Pembuatan produk klimatologi meteorologi maritim</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1_3_data_manipulation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/1_3_data_manipulation.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tabular data manipulation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-membaca-dan-membersihkan-data">A. Membaca dan membersihkan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-memanipulasi-data">B. Memanipulasi data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tabular-data-manipulation">
+<h1>Tabular data manipulation<a class="headerlink" href="#tabular-data-manipulation" title="Link to this heading">#</a></h1>
+<p>Penyusun: Tim Teknis Direktorat Meteorologi Maritim</p>
+<p>Kontak: <a class="reference external" href="mailto:suwignyo&#46;prasetyo&#37;&#52;&#48;bmkg&#46;go&#46;id">suwignyo<span>&#46;</span>prasetyo<span>&#64;</span>bmkg<span>&#46;</span>go<span>&#46;</span>id</a></p>
+<hr class="docutils" />
+<section id="kompetensi">
+<h2>Kompetensi<a class="headerlink" href="#kompetensi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Mampu membaca, membersihkan, dan memanipulasi data meteorologi maritim.</p></li>
+</ul>
+</section>
+<section id="indikator-keberhasilan">
+<h2>Indikator keberhasilan<a class="headerlink" href="#indikator-keberhasilan" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Peserta dapat membaca data dari file CSV, Excel, atau format tabular lainnya menggunakan Pandas.</p></li>
+<li><p>Peserta dapat membersihkan data (handling missing value dan filtering) dan memanipulasi data tabular (sorting, grouping, dan agregasi).</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="a-membaca-dan-membersihkan-data">
+<h2>A. Membaca dan membersihkan data<a class="headerlink" href="#a-membaca-dan-membersihkan-data" title="Link to this heading">#</a></h2>
+<p>Proses analisis data sepenuhnya disesuaikan dengan tujuan dan sifat dari data yang akan di analisis. Dalam praktik ini, kita akan memproses data waterlevel dari pengukuran MAWS Tanjung Priok. Data sampel tersedia dalam rentang waktu Agustus - September 2021, dengan resolusi temporal 10 menit.</p>
+<blockquote>
+<div><p>Tujuan: kita akan membuat rata-rata jam berdasarkan hari untuk mendapatkan pola harian. Output akhir adalah rata-rata data waterlevel dalam satu hari (jam 00 - 23).</p>
+</div></blockquote>
+<blockquote>
+<div><p>Disclaimer: Tujuan dari pengolahan ini disesuaikan untuk fokus pada bagaimana menghandel sampel data tabular meteorologi maritim khususnya menggunakan pandas, bukan untuk menganalisisnya secara ilmiah.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load module &amp; data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">file1</span> <span class="o">=</span> <span class="s2">&quot;aws_priok_202108.csv&quot;</span>
+<span class="n">file2</span> <span class="o">=</span> <span class="s2">&quot;aws_priok_202109.xlsx&quot;</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file1</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">file1</span> <span class="o">=</span> <span class="s2">&quot;aws_priok_202108.csv&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">file2</span> <span class="o">=</span> <span class="s2">&quot;aws_priok_202109.xlsx&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file1</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file2</span><span class="p">)</span>
+
+<span class="nn">File ~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;aws_priok_202108.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cek data sekilas menggunakan method .head()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># menampilkan 3 baris</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>time</th>
+      <th>windspeed</th>
+      <th>winddir</th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>pressure</th>
+      <th>rain</th>
+      <th>solrad</th>
+      <th>netrad</th>
+      <th>watertemp</th>
+      <th>waterlevel</th>
+      <th>ta_min</th>
+      <th>ta_max</th>
+      <th>pancilevel</th>
+      <th>pancitemp</th>
+      <th>Year</th>
+      <th>Month</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2021-08-18 16:38:00</td>
+      <td>1.2</td>
+      <td>142.0</td>
+      <td>27.7</td>
+      <td>72.1</td>
+      <td>1010.7</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>30.6</td>
+      <td>1.952</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2021</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2021-08-30 17:04:00</td>
+      <td>0.5</td>
+      <td>135.0</td>
+      <td>28.8</td>
+      <td>76.3</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>30.8</td>
+      <td>1.724</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2021</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2021-08-19 05:05:00</td>
+      <td>4.6</td>
+      <td>321.0</td>
+      <td>29.8</td>
+      <td>67.3</td>
+      <td>1009.4</td>
+      <td>0.0</td>
+      <td>388.8</td>
+      <td>0.0</td>
+      <td>30.4</td>
+      <td>1.814</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2021</td>
+      <td>8</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>time</th>
+      <th>windspeed</th>
+      <th>winddir</th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>pressure</th>
+      <th>rain</th>
+      <th>solrad</th>
+      <th>netrad</th>
+      <th>watertemp</th>
+      <th>waterlevel</th>
+      <th>ta_min</th>
+      <th>ta_max</th>
+      <th>pancilevel</th>
+      <th>pancitemp</th>
+      <th>Year</th>
+      <th>Month</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2021-09-07 03:33:00</td>
+      <td>0.4</td>
+      <td>314</td>
+      <td>27.6</td>
+      <td>83.3</td>
+      <td>1012.9</td>
+      <td>1.2</td>
+      <td>568.4</td>
+      <td>0</td>
+      <td>30.5</td>
+      <td>1.721</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2021-09-23 12:47:00</td>
+      <td>2.3</td>
+      <td>81</td>
+      <td>29.5</td>
+      <td>70.7</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>31.2</td>
+      <td>1.795</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2021-09-27 10:09:00</td>
+      <td>5.3</td>
+      <td>23</td>
+      <td>29.8</td>
+      <td>78.6</td>
+      <td>1006.5</td>
+      <td>0.0</td>
+      <td>72.8</td>
+      <td>0</td>
+      <td>31.5</td>
+      <td>1.795</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># seleksi &amp; gabungkan data</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">,</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df1</span><span class="p">[</span><span class="n">cols</span><span class="p">],</span> <span class="n">df2</span><span class="p">[</span><span class="n">cols</span><span class="p">]])</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>waterlevel</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2021-08-18 16:38:00</td>
+      <td>1.952</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2021-08-30 17:04:00</td>
+      <td>1.724</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2021-08-19 05:05:00</td>
+      <td>1.814</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2021-08-09 06:23:00</td>
+      <td>1.762</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2021-08-01 22:27:00</td>
+      <td>1.535</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>39340</th>
+      <td>2021-09-05 05:43:00</td>
+      <td>1.862</td>
+    </tr>
+    <tr>
+      <th>39341</th>
+      <td>2021-09-12 18:23:00</td>
+      <td>1.538</td>
+    </tr>
+    <tr>
+      <th>39342</th>
+      <td>2021-09-21 14:22:00</td>
+      <td>2.007</td>
+    </tr>
+    <tr>
+      <th>39343</th>
+      <td>2021-09-06 13:16:00</td>
+      <td>2.156</td>
+    </tr>
+    <tr>
+      <th>39344</th>
+      <td>2021-09-15 20:22:00</td>
+      <td>1.304</td>
+    </tr>
+  </tbody>
+</table>
+<p>75765 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check nan values</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+
+<span class="c1"># check data types</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+
+<span class="c1"># check stats</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">30</span><span class="o">*</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+
+<span class="c1"># quick plot</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time          0
+waterlevel    0
+dtype: int64
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==============================
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time           object
+waterlevel    float64
+dtype: object
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==============================
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>waterlevel</th>
+      <td>75765.0</td>
+      <td>1.854415</td>
+      <td>0.207846</td>
+      <td>0.438</td>
+      <td>1.724</td>
+      <td>1.802</td>
+      <td>2.047</td>
+      <td>4.38</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==============================
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/81c0c25829b7381747c80337bea1dbf0cfeefd90dc6111851a23f1b219364f3f.png" src="_images/81c0c25829b7381747c80337bea1dbf0cfeefd90dc6111851a23f1b219364f3f.png" />
+</div>
+</div>
+<!-- <div align='center'>***</div> -->
+<hr class="docutils" />
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Point penting</p></th>
+<th class="head text-left"><p>Tindak anjut</p></th>
+<th class="head"><p>Metode</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Tipe data waktu bukan datetime</p></td>
+<td class="text-left"><p>ubah ke datetime</p></td>
+<td><p>pandas to_datetime</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Urutan data acak</p></td>
+<td class="text-left"><p>urutkan sesuai waktu</p></td>
+<td><p>pandas sort_values</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Terdapat spikes</p></td>
+<td class="text-left"><p>eliminasi</p></td>
+<td><p>pandas filtering</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TO DATETIME</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+
+<span class="c1"># SORTING</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># FILTERING: eliminasi spikes jika &gt;99% dan &lt;1%</span>
+<span class="n">q99</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.99</span><span class="p">)</span>
+<span class="n">q01</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.01</span><span class="p">)</span>
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">q01</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">q99</span><span class="p">)]</span>
+<span class="n">df_filtered</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>waterlevel</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-08-01 03:00:00</th>
+      <td>1.723</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:01:00</th>
+      <td>1.722</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:02:00</th>
+      <td>1.724</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:03:00</th>
+      <td>1.726</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:04:00</th>
+      <td>1.725</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:54:00</th>
+      <td>1.795</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:55:00</th>
+      <td>1.795</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:56:00</th>
+      <td>1.795</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:57:00</th>
+      <td>1.795</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:58:00</th>
+      <td>1.795</td>
+    </tr>
+  </tbody>
+</table>
+<p>74246 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QUICK PLOT</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/d14ebf084f320605a37e1ceb322736060856dfb757bc5f594f4891fceef10938.png" src="_images/d14ebf084f320605a37e1ceb322736060856dfb757bc5f594f4891fceef10938.png" />
+</div>
+</div>
+</section>
+<section id="b-memanipulasi-data">
+<h2>B. Memanipulasi data<a class="headerlink" href="#b-memanipulasi-data" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<p>Berdasarkan proses sebelumnya, terdapat tiga point penting.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Point penting</p></th>
+<th class="head text-left"><p>Tindak anjut</p></th>
+<th class="head"><p>Metode</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Tidak terdapat nan values, namun nilai stagnan pada periode waktu tertentu</p></td>
+<td class="text-left"><p>replace ke nan dan eliminasi</p></td>
+<td><p>pandas filtering &amp; apply method</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Resolusi temporal per 10 menit</p></td>
+<td class="text-left"><p>ambil snapshoot tiap jam</p></td>
+<td><p>pandas filtering</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Resolusi temporal per jam</p></td>
+<td class="text-left"><p>ambil rata-rata dalam periode keseluruhan</p></td>
+<td><p>pandas groupby and agregation by mean</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FILTERING NILAI STAGNAN</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_stagnan</span><span class="p">(</span><span class="n">val1</span><span class="p">,</span> <span class="n">val2</span><span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val1</span><span class="o">-</span><span class="n">val2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">diff</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevellag1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;to_remove&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">remove_stagnan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;waterlevellag1&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_filtered</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_33131/835470890.py:10: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_filtered[&#39;waterlevellag1&#39;] = df_filtered[&#39;waterlevel&#39;].shift(periods=1)
+/tmp/ipykernel_33131/835470890.py:11: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_filtered[&#39;to_remove&#39;] = df_filtered.apply(lambda row: remove_stagnan(row[&#39;waterlevel&#39;], row[&#39;waterlevellag1&#39;]), axis=1)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>waterlevel</th>
+      <th>waterlevellag1</th>
+      <th>to_remove</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2021-08-01 03:00:00</th>
+      <td>1.723</td>
+      <td>NaN</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:01:00</th>
+      <td>1.722</td>
+      <td>1.723</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:02:00</th>
+      <td>1.724</td>
+      <td>1.722</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:03:00</th>
+      <td>1.726</td>
+      <td>1.724</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2021-08-01 03:04:00</th>
+      <td>1.725</td>
+      <td>1.726</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:54:00</th>
+      <td>1.795</td>
+      <td>1.795</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:55:00</th>
+      <td>1.795</td>
+      <td>1.795</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:56:00</th>
+      <td>1.795</td>
+      <td>1.795</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:57:00</th>
+      <td>1.795</td>
+      <td>1.795</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2021-09-30 23:58:00</th>
+      <td>1.795</td>
+      <td>1.795</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>74246 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FILTER</span>
+<span class="n">df_filtered_new</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]][</span><span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;to_remove&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># QUICK PLOT</span>
+<span class="n">df_filtered_new</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>waterlevel</th>
+      <td>39709.0</td>
+      <td>1.842266</td>
+      <td>0.208091</td>
+      <td>1.33</td>
+      <td>1.708</td>
+      <td>1.847</td>
+      <td>1.993</td>
+      <td>2.255</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QUICK PLOT</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BEFORE&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_filtered</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BEFORE
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/0d5107836860defd207b4e1dce20938e43f440f8689813c2f9ff98eb52c11b27.png" src="_images/0d5107836860defd207b4e1dce20938e43f440f8689813c2f9ff98eb52c11b27.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AFTER&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_filtered_new</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AFTER
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/35f16d525b162ce4f7adae1f9297b6b672c252445812b19f776264afcc037abc.png" src="_images/35f16d525b162ce4f7adae1f9297b6b672c252445812b19f776264afcc037abc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SNAPSHOOT PER 1 JAM</span>
+<span class="n">df_1jam</span> <span class="o">=</span> <span class="n">df_filtered_new</span><span class="p">[</span><span class="n">df_filtered_new</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">minute</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_1jam</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="_images/b7ce05ca217a095045a66e1663d737dd2e1ca27656377c2ed3885064bef51b9d.png" src="_images/b7ce05ca217a095045a66e1663d737dd2e1ca27656377c2ed3885064bef51b9d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># RATA-RATA KESELURUHAN DATA</span>
+<span class="n">df_1jam_grouped</span> <span class="o">=</span> <span class="n">df_1jam</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_1jam</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
+<span class="n">df_1jam_grouped</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f752ce3f4d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CEK ISI DARI df_1jam_grouped</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">df_1jam_grouped</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jam ke&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="mi">50</span><span class="o">*</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jam ke 0             waterlevel
+time                  
+2021-08-02       1.630
+2021-08-03       1.437
+2021-08-06       1.386
+2021-08-08       1.447
+2021-08-09       1.490
+2021-08-10       1.578
+2021-08-19       1.362
+2021-08-20       1.335
+2021-08-22       1.336
+2021-08-23       1.441
+2021-08-24       1.547
+2021-08-25       1.571
+2021-08-27       1.775
+2021-08-28       1.779
+2021-09-04       1.501
+2021-09-05       1.465
+2021-09-06       1.529
+2021-09-07       1.499
+2021-09-08       1.596
+2021-09-09       1.577
+2021-09-11       1.806
+2021-09-12       1.859
+2021-09-13       1.861
+2021-09-14       1.739
+2021-09-15       1.518
+2021-09-16       1.621
+2021-09-17       1.525
+2021-09-18       1.628
+2021-09-20       1.521
+2021-09-21       1.611
+2021-09-22       1.736
+==================================================
+Jam ke 1                      waterlevel
+time                           
+2021-08-02 01:00:00       1.708
+2021-08-03 01:00:00       1.581
+2021-08-09 01:00:00       1.497
+2021-08-10 01:00:00       1.577
+2021-08-20 01:00:00       1.446
+2021-08-21 01:00:00       1.443
+2021-08-22 01:00:00       1.443
+2021-08-24 01:00:00       1.545
+2021-08-25 01:00:00       1.576
+2021-08-27 01:00:00       1.772
+2021-08-28 01:00:00       1.818
+2021-09-04 01:00:00       1.618
+2021-09-06 01:00:00       1.614
+2021-09-07 01:00:00       1.657
+2021-09-08 01:00:00       1.645
+2021-09-09 01:00:00       1.606
+2021-09-10 01:00:00       1.736
+2021-09-11 01:00:00       1.827
+2021-09-12 01:00:00       1.902
+2021-09-15 01:00:00       1.662
+2021-09-17 01:00:00       1.648
+2021-09-18 01:00:00       1.715
+2021-09-20 01:00:00       1.579
+2021-09-21 01:00:00       1.696
+2021-09-22 01:00:00       1.775
+==================================================
+Jam ke 2                      waterlevel
+time                           
+2021-08-02 02:00:00       1.703
+2021-08-03 02:00:00       1.651
+2021-08-08 02:00:00       1.516
+2021-08-09 02:00:00       1.549
+2021-08-10 02:00:00       1.573
+2021-08-18 02:00:00       1.673
+2021-08-19 02:00:00       1.610
+2021-08-20 02:00:00       1.511
+2021-08-21 02:00:00       1.531
+2021-08-22 02:00:00       1.488
+2021-08-23 02:00:00       1.581
+2021-08-24 02:00:00       1.626
+2021-08-25 02:00:00       1.655
+2021-08-27 02:00:00       1.783
+2021-09-05 02:00:00       1.652
+2021-09-06 02:00:00       1.690
+2021-09-08 02:00:00       1.712
+2021-09-09 02:00:00       1.676
+2021-09-11 02:00:00       1.843
+2021-09-12 02:00:00       1.931
+2021-09-14 02:00:00       1.871
+2021-09-15 02:00:00       1.782
+2021-09-16 02:00:00       1.860
+2021-09-17 02:00:00       1.798
+2021-09-18 02:00:00       1.814
+2021-09-20 02:00:00       1.652
+2021-09-21 02:00:00       1.794
+2021-09-22 02:00:00       1.818
+==================================================
+Jam ke 3                      waterlevel
+time                           
+2021-08-01 03:00:00       1.723
+2021-08-02 03:00:00       1.771
+2021-08-03 03:00:00       1.711
+2021-08-08 03:00:00       1.576
+2021-08-10 03:00:00       1.676
+2021-08-18 03:00:00       1.749
+2021-08-19 03:00:00       1.720
+2021-08-20 03:00:00       1.657
+2021-08-21 03:00:00       1.633
+2021-08-22 03:00:00       1.551
+2021-08-23 03:00:00       1.622
+2021-08-24 03:00:00       1.672
+2021-08-26 03:00:00       1.773
+2021-08-28 03:00:00       1.855
+2021-09-04 03:00:00       1.778
+2021-09-05 03:00:00       1.707
+2021-09-06 03:00:00       1.707
+2021-09-07 03:00:00       1.709
+2021-09-08 03:00:00       1.791
+2021-09-09 03:00:00       1.764
+2021-09-10 03:00:00       1.896
+2021-09-11 03:00:00       1.944
+2021-09-12 03:00:00       2.004
+2021-09-14 03:00:00       1.862
+2021-09-15 03:00:00       1.830
+2021-09-16 03:00:00       1.927
+2021-09-17 03:00:00       1.839
+2021-09-18 03:00:00       1.891
+2021-09-20 03:00:00       1.711
+2021-09-21 03:00:00       1.829
+2021-09-22 03:00:00       1.844
+==================================================
+Jam ke 4                      waterlevel
+time                           
+2021-08-01 04:00:00       1.730
+2021-08-02 04:00:00       1.718
+2021-08-03 04:00:00       1.758
+2021-08-06 04:00:00       1.721
+2021-08-07 04:00:00       1.741
+2021-08-08 04:00:00       1.639
+2021-08-09 04:00:00       1.635
+2021-08-10 04:00:00       1.678
+2021-08-18 04:00:00       1.813
+2021-08-19 04:00:00       1.788
+2021-08-20 04:00:00       1.726
+2021-08-21 04:00:00       1.733
+2021-08-22 04:00:00       1.598
+2021-08-23 04:00:00       1.681
+2021-08-24 04:00:00       1.727
+2021-08-26 04:00:00       1.845
+2021-08-28 04:00:00       1.886
+2021-09-04 04:00:00       1.809
+2021-09-05 04:00:00       1.765
+2021-09-07 04:00:00       1.755
+2021-09-08 04:00:00       1.795
+2021-09-11 04:00:00       2.006
+2021-09-12 04:00:00       2.093
+2021-09-13 04:00:00       2.060
+2021-09-14 04:00:00       1.833
+2021-09-15 04:00:00       1.878
+2021-09-16 04:00:00       1.954
+2021-09-17 04:00:00       1.888
+2021-09-18 04:00:00       1.911
+2021-09-20 04:00:00       1.754
+2021-09-21 04:00:00       1.830
+==================================================
+Jam ke 5                      waterlevel
+time                           
+2021-08-01 05:00:00       1.770
+2021-08-02 05:00:00       1.753
+2021-08-03 05:00:00       1.799
+2021-08-06 05:00:00       1.775
+2021-08-07 05:00:00       1.808
+2021-08-08 05:00:00       1.702
+2021-08-10 05:00:00       1.705
+2021-08-18 05:00:00       1.830
+2021-08-19 05:00:00       1.815
+2021-08-20 05:00:00       1.785
+2021-08-21 05:00:00       1.753
+2021-08-22 05:00:00       1.688
+2021-08-23 05:00:00       1.756
+2021-08-24 05:00:00       1.778
+2021-08-26 05:00:00       1.860
+2021-08-27 05:00:00       1.958
+2021-08-28 05:00:00       1.955
+2021-09-04 05:00:00       1.843
+2021-09-05 05:00:00       1.819
+2021-09-06 05:00:00       1.793
+2021-09-07 05:00:00       1.750
+2021-09-08 05:00:00       1.830
+2021-09-09 05:00:00       1.797
+2021-09-10 05:00:00       1.916
+2021-09-11 05:00:00       1.999
+2021-09-12 05:00:00       2.147
+2021-09-13 05:00:00       2.230
+2021-09-14 05:00:00       1.869
+2021-09-15 05:00:00       1.876
+2021-09-17 05:00:00       1.872
+2021-09-18 05:00:00       1.893
+2021-09-21 05:00:00       1.854
+2021-09-22 05:00:00       1.906
+==================================================
+Jam ke 6                      waterlevel
+time                           
+2021-08-01 06:00:00       1.836
+2021-08-03 06:00:00       1.808
+2021-08-06 06:00:00       1.827
+2021-08-08 06:00:00       1.756
+2021-08-09 06:00:00       1.754
+2021-08-10 06:00:00       1.771
+2021-08-18 06:00:00       1.854
+2021-08-19 06:00:00       1.876
+2021-08-20 06:00:00       1.816
+2021-08-21 06:00:00       1.839
+2021-08-22 06:00:00       1.713
+2021-08-23 06:00:00       1.786
+2021-08-24 06:00:00       1.785
+2021-08-25 06:00:00       1.844
+2021-08-26 06:00:00       1.880
+2021-08-27 06:00:00       1.982
+2021-08-28 06:00:00       1.938
+2021-09-05 06:00:00       1.865
+2021-09-06 06:00:00       1.842
+2021-09-07 06:00:00       1.771
+2021-09-08 06:00:00       1.858
+2021-09-09 06:00:00       1.797
+2021-09-10 06:00:00       1.943
+2021-09-12 06:00:00       2.100
+2021-09-13 06:00:00       2.125
+2021-09-14 06:00:00       1.982
+2021-09-15 06:00:00       1.912
+2021-09-16 06:00:00       1.920
+2021-09-17 06:00:00       1.846
+2021-09-20 06:00:00       1.745
+2021-09-21 06:00:00       1.841
+2021-09-22 06:00:00       1.916
+==================================================
+Jam ke 7                      waterlevel
+time                           
+2021-08-01 07:00:00       1.893
+2021-08-02 07:00:00       1.855
+2021-08-03 07:00:00       1.853
+2021-08-06 07:00:00       1.842
+2021-08-07 07:00:00       1.886
+2021-08-08 07:00:00       1.773
+2021-08-09 07:00:00       1.792
+2021-08-10 07:00:00       1.806
+2021-08-19 07:00:00       1.829
+2021-08-21 07:00:00       1.812
+2021-08-23 07:00:00       1.840
+2021-08-26 07:00:00       1.911
+2021-08-27 07:00:00       2.007
+2021-08-28 07:00:00       1.974
+2021-09-05 07:00:00       1.845
+2021-09-06 07:00:00       1.863
+2021-09-07 07:00:00       1.815
+2021-09-08 07:00:00       1.851
+2021-09-09 07:00:00       1.792
+2021-09-11 07:00:00       2.020
+2021-09-12 07:00:00       2.149
+2021-09-13 07:00:00       2.102
+2021-09-14 07:00:00       1.966
+2021-09-15 07:00:00       1.943
+2021-09-16 07:00:00       1.932
+2021-09-17 07:00:00       1.810
+2021-09-18 07:00:00       1.867
+2021-09-21 07:00:00       1.839
+2021-09-22 07:00:00       1.955
+==================================================
+Jam ke 8                      waterlevel
+time                           
+2021-08-02 08:00:00       1.897
+2021-08-07 08:00:00       1.911
+2021-08-08 08:00:00       1.833
+2021-08-09 08:00:00       1.817
+2021-08-10 08:00:00       1.822
+2021-08-18 08:00:00       2.007
+2021-08-19 08:00:00       1.890
+2021-08-20 08:00:00       1.837
+2021-08-21 08:00:00       1.839
+2021-08-23 08:00:00       1.851
+2021-08-24 08:00:00       1.837
+2021-08-25 08:00:00       1.852
+2021-08-26 08:00:00       1.897
+2021-08-27 08:00:00       2.028
+2021-08-28 08:00:00       1.984
+2021-09-04 08:00:00       1.858
+2021-09-06 08:00:00       1.882
+2021-09-07 08:00:00       1.772
+2021-09-08 08:00:00       1.834
+2021-09-09 08:00:00       1.776
+2021-09-10 08:00:00       1.899
+2021-09-11 08:00:00       2.025
+2021-09-12 08:00:00       2.074
+2021-09-13 08:00:00       2.129
+2021-09-15 08:00:00       2.016
+2021-09-16 08:00:00       1.986
+2021-09-17 08:00:00       1.884
+2021-09-18 08:00:00       1.851
+2021-09-20 08:00:00       1.718
+2021-09-21 08:00:00       1.800
+2021-09-22 08:00:00       1.948
+==================================================
+Jam ke 9                      waterlevel
+time                           
+2021-08-01 09:00:00       1.988
+2021-08-02 09:00:00       1.965
+2021-08-03 09:00:00       2.023
+2021-08-07 09:00:00       1.961
+2021-08-08 09:00:00       1.876
+2021-08-09 09:00:00       1.858
+2021-08-10 09:00:00       1.864
+2021-08-18 09:00:00       2.101
+2021-08-19 09:00:00       1.944
+2021-08-20 09:00:00       1.877
+2021-08-21 09:00:00       1.809
+2021-08-22 09:00:00       1.849
+2021-08-23 09:00:00       1.873
+2021-08-25 09:00:00       1.851
+2021-08-26 09:00:00       1.916
+2021-08-27 09:00:00       2.054
+2021-09-04 09:00:00       1.900
+2021-09-06 09:00:00       1.908
+2021-09-07 09:00:00       1.807
+2021-09-08 09:00:00       1.861
+2021-09-09 09:00:00       1.751
+2021-09-10 09:00:00       1.908
+2021-09-11 09:00:00       2.016
+2021-09-14 09:00:00       2.066
+2021-09-15 09:00:00       2.093
+2021-09-16 09:00:00       2.077
+2021-09-17 09:00:00       1.938
+2021-09-18 09:00:00       1.937
+2021-09-20 09:00:00       1.748
+2021-09-21 09:00:00       1.839
+2021-09-22 09:00:00       1.938
+==================================================
+Jam ke 10                      waterlevel
+time                           
+2021-08-01 10:00:00       2.039
+2021-08-02 10:00:00       2.040
+2021-08-03 10:00:00       2.062
+2021-08-07 10:00:00       2.019
+2021-08-08 10:00:00       1.939
+2021-08-09 10:00:00       1.889
+2021-08-10 10:00:00       1.896
+2021-08-18 10:00:00       2.219
+2021-08-19 10:00:00       2.077
+2021-08-20 10:00:00       1.990
+2021-08-21 10:00:00       1.848
+2021-08-23 10:00:00       1.896
+2021-08-24 10:00:00       1.877
+2021-08-25 10:00:00       1.907
+2021-08-26 10:00:00       1.942
+2021-08-27 10:00:00       2.069
+2021-08-28 10:00:00       2.068
+2021-09-03 10:00:00       1.959
+2021-09-05 10:00:00       1.985
+2021-09-06 10:00:00       2.020
+2021-09-08 10:00:00       1.886
+2021-09-09 10:00:00       1.788
+2021-09-10 10:00:00       1.934
+2021-09-11 10:00:00       2.011
+2021-09-12 10:00:00       2.139
+2021-09-13 10:00:00       2.200
+2021-09-14 10:00:00       2.081
+2021-09-15 10:00:00       2.177
+2021-09-16 10:00:00       2.151
+2021-09-18 10:00:00       2.027
+2021-09-19 10:00:00       1.893
+2021-09-20 10:00:00       1.784
+2021-09-21 10:00:00       1.890
+2021-09-22 10:00:00       1.971
+==================================================
+Jam ke 11                      waterlevel
+time                           
+2021-08-01 11:00:00       2.113
+2021-08-02 11:00:00       2.087
+2021-08-03 11:00:00       2.142
+2021-08-06 11:00:00       2.107
+2021-08-07 11:00:00       2.100
+2021-08-08 11:00:00       2.034
+2021-08-09 11:00:00       1.993
+2021-08-10 11:00:00       1.967
+2021-08-19 11:00:00       2.134
+2021-08-20 11:00:00       2.092
+2021-08-22 11:00:00       1.948
+2021-08-24 11:00:00       1.897
+2021-08-25 11:00:00       1.955
+2021-08-26 11:00:00       1.985
+2021-08-27 11:00:00       2.069
+2021-08-28 11:00:00       2.115
+2021-09-04 11:00:00       2.062
+2021-09-05 11:00:00       2.075
+2021-09-06 11:00:00       2.014
+2021-09-08 11:00:00       1.898
+2021-09-09 11:00:00       1.777
+2021-09-10 11:00:00       1.925
+2021-09-11 11:00:00       2.015
+2021-09-12 11:00:00       2.150
+2021-09-14 11:00:00       2.122
+2021-09-15 11:00:00       2.226
+2021-09-16 11:00:00       2.231
+2021-09-17 11:00:00       2.131
+2021-09-18 11:00:00       2.140
+2021-09-19 11:00:00       1.933
+2021-09-20 11:00:00       1.835
+2021-09-21 11:00:00       1.908
+2021-09-22 11:00:00       1.992
+==================================================
+Jam ke 12                      waterlevel
+time                           
+2021-08-01 12:00:00       2.142
+2021-08-02 12:00:00       2.116
+2021-08-07 12:00:00       2.188
+2021-08-08 12:00:00       2.143
+2021-08-09 12:00:00       2.084
+2021-08-10 12:00:00       2.056
+2021-08-19 12:00:00       2.239
+2021-08-20 12:00:00       2.213
+2021-08-21 12:00:00       2.028
+2021-08-22 12:00:00       2.062
+2021-08-23 12:00:00       2.039
+2021-08-25 12:00:00       1.976
+2021-08-26 12:00:00       1.998
+2021-08-27 12:00:00       2.066
+2021-08-28 12:00:00       2.115
+2021-09-03 12:00:00       2.170
+2021-09-04 12:00:00       2.136
+2021-09-05 12:00:00       2.156
+2021-09-06 12:00:00       2.107
+2021-09-07 12:00:00       1.951
+2021-09-08 12:00:00       1.918
+2021-09-09 12:00:00       1.801
+2021-09-10 12:00:00       1.897
+2021-09-11 12:00:00       1.920
+2021-09-12 12:00:00       2.061
+2021-09-13 12:00:00       2.223
+2021-09-14 12:00:00       2.150
+2021-09-17 12:00:00       2.218
+2021-09-18 12:00:00       2.247
+2021-09-20 12:00:00       1.915
+==================================================
+Jam ke 13                      waterlevel
+time                           
+2021-08-02 13:00:00       2.120
+2021-08-03 13:00:00       2.199
+2021-08-07 13:00:00       2.228
+2021-08-08 13:00:00       2.204
+2021-08-09 13:00:00       2.183
+2021-08-10 13:00:00       2.097
+2021-08-19 13:00:00       2.246
+2021-08-20 13:00:00       2.251
+2021-08-21 13:00:00       2.121
+2021-08-22 13:00:00       2.150
+2021-08-23 13:00:00       2.117
+2021-08-24 13:00:00       2.006
+2021-08-25 13:00:00       1.985
+2021-08-26 13:00:00       1.964
+2021-08-27 13:00:00       1.991
+2021-08-28 13:00:00       2.070
+2021-09-04 13:00:00       2.144
+2021-09-06 13:00:00       2.148
+2021-09-07 13:00:00       2.046
+2021-09-08 13:00:00       1.957
+2021-09-09 13:00:00       1.806
+2021-09-10 13:00:00       1.873
+2021-09-12 13:00:00       2.000
+2021-09-13 13:00:00       2.118
+2021-09-15 13:00:00       2.232
+2021-09-16 13:00:00       2.252
+2021-09-19 13:00:00       2.080
+2021-09-21 13:00:00       2.000
+2021-09-22 13:00:00       1.970
+==================================================
+Jam ke 14                      waterlevel
+time                           
+2021-08-01 14:00:00       2.164
+2021-08-02 14:00:00       2.092
+2021-08-07 14:00:00       2.228
+2021-08-08 14:00:00       2.239
+2021-08-09 14:00:00       2.238
+2021-08-10 14:00:00       2.200
+2021-08-21 14:00:00       2.164
+2021-08-22 14:00:00       2.198
+2021-08-23 14:00:00       2.188
+2021-08-24 14:00:00       2.058
+2021-08-25 14:00:00       2.036
+2021-08-26 14:00:00       1.924
+2021-08-27 14:00:00       1.902
+2021-08-28 14:00:00       1.986
+2021-09-03 14:00:00       2.167
+2021-09-04 14:00:00       2.120
+2021-09-05 14:00:00       2.218
+2021-09-06 14:00:00       2.117
+2021-09-07 14:00:00       2.092
+2021-09-09 14:00:00       1.882
+2021-09-10 14:00:00       1.797
+2021-09-11 14:00:00       1.730
+2021-09-12 14:00:00       1.920
+2021-09-13 14:00:00       1.957
+2021-09-15 14:00:00       2.196
+2021-09-16 14:00:00       2.183
+2021-09-19 14:00:00       2.083
+2021-09-20 14:00:00       1.981
+2021-09-21 14:00:00       2.045
+2021-09-22 14:00:00       1.977
+==================================================
+Jam ke 15                      waterlevel
+time                           
+2021-08-02 15:00:00       2.043
+2021-08-05 15:00:00       2.067
+2021-08-07 15:00:00       2.181
+2021-08-09 15:00:00       2.235
+2021-08-10 15:00:00       2.229
+2021-08-18 15:00:00       2.204
+2021-08-19 15:00:00       2.184
+2021-08-20 15:00:00       2.220
+2021-08-21 15:00:00       2.142
+2021-08-22 15:00:00       2.191
+2021-08-23 15:00:00       2.254
+2021-08-25 15:00:00       2.041
+2021-08-26 15:00:00       1.934
+2021-08-27 15:00:00       1.846
+2021-08-28 15:00:00       1.855
+2021-09-03 15:00:00       2.126
+2021-09-04 15:00:00       2.099
+2021-09-05 15:00:00       2.166
+2021-09-06 15:00:00       2.071
+2021-09-07 15:00:00       2.140
+2021-09-08 15:00:00       2.029
+2021-09-09 15:00:00       1.935
+2021-09-10 15:00:00       1.837
+2021-09-11 15:00:00       1.671
+2021-09-12 15:00:00       1.802
+2021-09-13 15:00:00       1.783
+2021-09-14 15:00:00       1.779
+2021-09-15 15:00:00       2.040
+2021-09-16 15:00:00       2.079
+2021-09-17 15:00:00       2.209
+2021-09-19 15:00:00       2.054
+2021-09-20 15:00:00       1.946
+==================================================
+Jam ke 16                      waterlevel
+time                           
+2021-08-01 16:00:00       1.944
+2021-08-07 16:00:00       2.122
+2021-08-08 16:00:00       2.171
+2021-08-09 16:00:00       2.181
+2021-08-10 16:00:00       2.180
+2021-08-18 16:00:00       2.019
+2021-08-19 16:00:00       2.096
+2021-08-20 16:00:00       2.157
+2021-08-22 16:00:00       2.114
+2021-08-23 16:00:00       2.202
+2021-08-24 16:00:00       2.068
+2021-08-25 16:00:00       2.008
+2021-08-26 16:00:00       1.927
+2021-08-27 16:00:00       1.856
+2021-08-28 16:00:00       1.838
+2021-09-03 16:00:00       1.997
+2021-09-04 16:00:00       2.032
+2021-09-05 16:00:00       2.115
+2021-09-06 16:00:00       2.021
+2021-09-07 16:00:00       2.055
+2021-09-08 16:00:00       1.949
+2021-09-09 16:00:00       1.946
+2021-09-11 16:00:00       1.664
+2021-09-12 16:00:00       1.686
+2021-09-13 16:00:00       1.656
+2021-09-14 16:00:00       1.666
+2021-09-15 16:00:00       1.885
+2021-09-16 16:00:00       1.953
+2021-09-17 16:00:00       2.101
+2021-09-18 16:00:00       2.176
+2021-09-19 16:00:00       1.988
+2021-09-20 16:00:00       1.876
+2021-09-21 16:00:00       1.969
+==================================================
+Jam ke 17                      waterlevel
+time                           
+2021-08-01 17:00:00       1.830
+2021-08-02 17:00:00       1.772
+2021-08-05 17:00:00       1.926
+2021-08-06 17:00:00       2.083
+2021-08-07 17:00:00       2.074
+2021-08-08 17:00:00       2.090
+2021-08-09 17:00:00       2.142
+2021-08-10 17:00:00       2.132
+2021-08-19 17:00:00       1.950
+2021-08-20 17:00:00       2.052
+2021-08-21 17:00:00       2.045
+2021-08-24 17:00:00       1.971
+2021-08-25 17:00:00       1.976
+2021-08-26 17:00:00       1.863
+2021-08-27 17:00:00       1.837
+2021-08-28 17:00:00       1.782
+2021-09-03 17:00:00       1.892
+2021-09-04 17:00:00       1.919
+2021-09-05 17:00:00       2.004
+2021-09-06 17:00:00       1.947
+2021-09-07 17:00:00       1.986
+2021-09-08 17:00:00       1.866
+2021-09-09 17:00:00       1.901
+2021-09-10 17:00:00       1.795
+2021-09-11 17:00:00       1.661
+2021-09-12 17:00:00       1.640
+2021-09-13 17:00:00       1.488
+2021-09-15 17:00:00       1.701
+2021-09-16 17:00:00       1.779
+2021-09-17 17:00:00       1.968
+2021-09-18 17:00:00       2.072
+2021-09-21 17:00:00       1.906
+2021-09-22 17:00:00       1.832
+==================================================
+Jam ke 18                      waterlevel
+time                           
+2021-08-01 18:00:00       1.715
+2021-08-02 18:00:00       1.617
+2021-08-05 18:00:00       1.828
+2021-08-06 18:00:00       2.011
+2021-08-07 18:00:00       1.996
+2021-08-08 18:00:00       2.033
+2021-08-09 18:00:00       2.057
+2021-08-18 18:00:00       1.676
+2021-08-20 18:00:00       1.913
+2021-08-22 18:00:00       1.960
+2021-08-23 18:00:00       2.059
+2021-08-24 18:00:00       1.882
+2021-08-25 18:00:00       1.881
+2021-08-26 18:00:00       1.756
+2021-08-27 18:00:00       1.732
+2021-09-04 18:00:00       1.813
+2021-09-05 18:00:00       1.892
+2021-09-06 18:00:00       1.866
+2021-09-07 18:00:00       1.924
+2021-09-08 18:00:00       1.779
+2021-09-09 18:00:00       1.836
+2021-09-10 18:00:00       1.712
+2021-09-11 18:00:00       1.573
+2021-09-12 18:00:00       1.537
+2021-09-13 18:00:00       1.425
+2021-09-14 18:00:00       1.349
+2021-09-15 18:00:00       1.525
+2021-09-16 18:00:00       1.614
+2021-09-17 18:00:00       1.801
+2021-09-18 18:00:00       1.926
+2021-09-19 18:00:00       1.832
+2021-09-21 18:00:00       1.881
+2021-09-22 18:00:00       1.770
+==================================================
+Jam ke 19                      waterlevel
+time                           
+2021-08-02 19:00:00       1.525
+2021-08-05 19:00:00       1.718
+2021-08-07 19:00:00       1.911
+2021-08-08 19:00:00       1.913
+2021-08-09 19:00:00       1.999
+2021-08-18 19:00:00       1.498
+2021-08-19 19:00:00       1.611
+2021-08-20 19:00:00       1.753
+2021-08-21 19:00:00       1.777
+2021-08-22 19:00:00       1.863
+2021-08-23 19:00:00       1.958
+2021-08-24 19:00:00       1.821
+2021-08-26 19:00:00       1.695
+2021-08-27 19:00:00       1.747
+2021-09-03 19:00:00       1.600
+2021-09-04 19:00:00       1.667
+2021-09-05 19:00:00       1.793
+2021-09-06 19:00:00       1.754
+2021-09-07 19:00:00       1.850
+2021-09-08 19:00:00       1.711
+2021-09-09 19:00:00       1.754
+2021-09-10 19:00:00       1.662
+2021-09-11 19:00:00       1.594
+2021-09-12 19:00:00       1.566
+2021-09-13 19:00:00       1.412
+2021-09-15 19:00:00       1.407
+2021-09-16 19:00:00       1.478
+2021-09-17 19:00:00       1.648
+2021-09-18 19:00:00       1.823
+2021-09-19 19:00:00       1.750
+2021-09-20 19:00:00       1.702
+2021-09-21 19:00:00       1.783
+2021-09-22 19:00:00       1.745
+==================================================
+Jam ke 20                      waterlevel
+time                           
+2021-08-01 20:00:00       1.552
+2021-08-02 20:00:00       1.405
+2021-08-05 20:00:00       1.587
+2021-08-06 20:00:00       1.753
+2021-08-07 20:00:00       1.778
+2021-08-08 20:00:00       1.832
+2021-08-09 20:00:00       1.913
+2021-08-18 20:00:00       1.389
+2021-08-19 20:00:00       1.438
+2021-08-20 20:00:00       1.574
+2021-08-21 20:00:00       1.617
+2021-08-22 20:00:00       1.740
+2021-08-24 20:00:00       1.773
+2021-08-25 20:00:00       1.773
+2021-08-26 20:00:00       1.691
+2021-08-27 20:00:00       1.650
+2021-09-03 20:00:00       1.517
+2021-09-05 20:00:00       1.691
+2021-09-07 20:00:00       1.784
+2021-09-08 20:00:00       1.710
+2021-09-09 20:00:00       1.730
+2021-09-10 20:00:00       1.644
+2021-09-11 20:00:00       1.582
+2021-09-12 20:00:00       1.500
+2021-09-16 20:00:00       1.368
+2021-09-17 20:00:00       1.548
+2021-09-19 20:00:00       1.660
+2021-09-20 20:00:00       1.669
+2021-09-22 20:00:00       1.732
+==================================================
+Jam ke 21                      waterlevel
+time                           
+2021-08-01 21:00:00       1.510
+2021-08-02 21:00:00       1.382
+2021-08-06 21:00:00       1.623
+2021-08-07 21:00:00       1.676
+2021-08-08 21:00:00       1.685
+2021-08-09 21:00:00       1.816
+2021-08-18 21:00:00       1.336
+2021-08-19 21:00:00       1.337
+2021-08-20 21:00:00       1.412
+2021-08-21 21:00:00       1.509
+2021-08-23 21:00:00       1.784
+2021-08-24 21:00:00       1.717
+2021-08-25 21:00:00       1.756
+2021-08-26 21:00:00       1.685
+2021-08-27 21:00:00       1.724
+2021-09-03 21:00:00       1.409
+2021-09-05 21:00:00       1.576
+2021-09-06 21:00:00       1.575
+2021-09-07 21:00:00       1.683
+2021-09-08 21:00:00       1.630
+2021-09-09 21:00:00       1.688
+2021-09-10 21:00:00       1.630
+2021-09-12 21:00:00       1.561
+2021-09-13 21:00:00       1.443
+2021-09-17 21:00:00       1.497
+2021-09-19 21:00:00       1.567
+2021-09-20 21:00:00       1.633
+2021-09-21 21:00:00       1.817
+==================================================
+Jam ke 22                      waterlevel
+time                           
+2021-08-01 22:00:00       1.516
+2021-08-02 22:00:00       1.359
+2021-08-05 22:00:00       1.351
+2021-08-07 22:00:00       1.569
+2021-08-08 22:00:00       1.586
+2021-08-09 22:00:00       1.684
+2021-08-21 22:00:00       1.412
+2021-08-24 22:00:00       1.679
+2021-08-25 22:00:00       1.737
+2021-08-26 22:00:00       1.713
+2021-08-27 22:00:00       1.692
+2021-09-03 22:00:00       1.427
+2021-09-04 22:00:00       1.461
+2021-09-05 22:00:00       1.503
+2021-09-06 22:00:00       1.542
+2021-09-07 22:00:00       1.601
+2021-09-08 22:00:00       1.621
+2021-09-09 22:00:00       1.701
+2021-09-12 22:00:00       1.660
+2021-09-13 22:00:00       1.549
+2021-09-15 22:00:00       1.364
+2021-09-16 22:00:00       1.337
+2021-09-17 22:00:00       1.494
+2021-09-20 22:00:00       1.590
+2021-09-21 22:00:00       1.787
+2021-09-22 22:00:00       1.794
+==================================================
+Jam ke 23                      waterlevel
+time                           
+2021-08-02 23:00:00       1.414
+2021-08-06 23:00:00       1.482
+2021-08-07 23:00:00       1.464
+2021-08-08 23:00:00       1.523
+2021-08-09 23:00:00       1.618
+2021-08-21 23:00:00       1.350
+2021-08-22 23:00:00       1.453
+2021-08-23 23:00:00       1.593
+2021-08-24 23:00:00       1.623
+2021-08-25 23:00:00       1.757
+2021-08-26 23:00:00       1.789
+2021-09-05 23:00:00       1.524
+2021-09-06 23:00:00       1.539
+2021-09-08 23:00:00       1.607
+2021-09-09 23:00:00       1.713
+2021-09-10 23:00:00       1.779
+2021-09-11 23:00:00       1.794
+2021-09-12 23:00:00       1.725
+2021-09-13 23:00:00       1.660
+2021-09-15 23:00:00       1.486
+2021-09-16 23:00:00       1.405
+2021-09-17 23:00:00       1.521
+2021-09-19 23:00:00       1.502
+2021-09-20 23:00:00       1.576
+2021-09-22 23:00:00       1.847
+==================================================
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_1jam_mean</span> <span class="o">=</span> <span class="n">df_1jam_grouped</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df_1jam_mean</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_1jam_mean</span><span class="o">.</span><span class="n">plot</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>waterlevel</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.571161</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.643440</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.690821</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.765226</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.798323</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.844970</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1.860250</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1.890414</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1.895290</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1.922452</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1.990382</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2.035515</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2.077833</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2.088207</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2.069400</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2.043500</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1.988424</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1.905515</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1.793061</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1.711758</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1.641379</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>1.595036</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1.566500</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1.589760</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;time&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/71107118a14f79e1ae19c7778eb575cb7dce1995a1d5294a25c0ec5805871d1e.png" src="_images/71107118a14f79e1ae19c7778eb575cb7dce1995a1d5294a25c0ec5805871d1e.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_2_python_libraries.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Python scientific libraries</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1_4_data_visualization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data visualization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-membaca-dan-membersihkan-data">A. Membaca dan membersihkan data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-memanipulasi-data">B. Memanipulasi data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tim Teknis Direktorat Meteorologi Maritim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
