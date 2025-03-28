@@ -1,0 +1,17 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: 1_0_intro
+  sections:
+  - file: 1_1_intro_python
+  - file: 1_2_python_libraries
+  - file: 1_3_data_manipulation
+  - file: 1_4_data_visualization
+- file: 2_0_intro
+  sections:
+  - file: 2_1_data_processing_xarray
+  - file: 2_2_geospatial_data_visualization
+  - file: 2_3_climatology_product
