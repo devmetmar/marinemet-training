@@ -6,10 +6,13 @@ root: intro
 chapters:
 - file: 1_/1_0_intro
   sections:
-  - file: 1_/1_1_intro_python
-  - file: 1_/1_2_python_libraries
-  - file: 1_/1_3_data_manipulation
-  - file: 1_/1_4_data_visualization
+  - file: 1_/1_1_1_understanding_python_conda.ipynb
+  - file: 1_/1_1_2_jupyterlab.ipynb
+  - file: 1_/1_1_3_python_basic_syntax.ipynb
+  - file: 1_/1_1_4_python_function_mod_lib.ipynb
+  - file: 1_/1_2_python_libraries.ipynb
+  - file: 1_/1_3_data_manipulation.ipynb
+  - file: 1_/1_4_data_visualization.ipynb
 - file: 2_/2_0_intro
   sections:
   - file: 2_/2_1_data_processing_xarray
