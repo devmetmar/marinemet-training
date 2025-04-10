@@ -181,15 +181,19 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="1_0_intro.html">Introduction to Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_1_1_understanding_python_conda.html">Understanding python and conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_2_jupyterlab.html">Jupyterlab as an IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_3_python_basic_syntax.html">Python Basic Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_4_python_function_mod_lib.html">Python function, module, and library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_2_python_libraries.html">Python scientific libraries</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Tabular data manipulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_4_data_visualization.html">Data visualization</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_/2_0_intro.html">Pembuatan Produk Klimatologis Maritim Perairan untuk Wilayah Provinsi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_/2_1_data_processing_xarray.html">Pengolahan data multidimensi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_/2_2_geospatial_data_visualization.html">Visualisasi data geospasial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Pembuatan produk klimatologi meteorologi maritim</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_/2_0_intro.html">Multidimensional data processing and visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_1_data_processing_xarray.html">Multidimensional data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_2_geospatial_data_visualization.html">Spatial data visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Climatological product</a></li>
 </ul>
 </details></li>
 </ul>
@@ -1022,7 +1026,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1369007/835470890.py:10: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1425217/835470890.py:10: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -1030,7 +1034,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   df_filtered[&#39;waterlevellag1&#39;] = df_filtered[&#39;waterlevel&#39;].shift(periods=1)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1369007/835470890.py:11: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1425217/835470890.py:11: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -1252,7 +1256,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f6edc1b5d30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f36ddeb9d30&gt;
 </pre></div>
 </div>
 </div>
