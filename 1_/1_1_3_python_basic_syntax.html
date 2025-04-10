@@ -1,0 +1,1465 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Python Basic Syntax &#8212; Pelatihan Pengolahan Data Meteorologi Maritim</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_/1_1_3_python_basic_syntax';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python function, module, and library" href="1_1_4_python_function_mod_lib.html" />
+    <link rel="prev" title="Jupyterlab as an IDE" href="1_1_2_jupyterlab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Pelatihan Pengolahan Data Meteorologi Maritim - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Pelatihan Pengolahan Data Meteorologi Maritim - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Python for Metocean Data Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="1_0_intro.html">Introduction to Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_1_1_understanding_python_conda.html">Understanding python and conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_2_jupyterlab.html">Jupyterlab as an IDE</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Python Basic Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_4_python_function_mod_lib.html">Python function, module, and library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_2_python_libraries.html">Python scientific libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_3_data_manipulation.html">Tabular data manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_4_data_visualization.html">Data visualization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_/2_0_intro.html">Multidimensional data processing and visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_1_data_processing_xarray.html">Multidimensional data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_2_geospatial_data_visualization.html">Spatial data visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Climatological product</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1_/1_1_3_python_basic_syntax.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/1_/1_1_3_python_basic_syntax.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Python Basic Syntax</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">1. Hello world</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaks-dasar-komentar-dan-variabel">2. Sintaks dasar, komentar, dan variabel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komentar">Komentar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabel">Variabel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data-dasar-dan-operator">3. Tipe Data Dasar dan Operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data-dasar">Tipe Data Dasar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-aritmatika">Operator Aritmatika</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-perbandingan">Operator Perbandingan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-logika">Operator logika</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-penugasan">Operator penugasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-identitas">Operator Identitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-keanggotaan">Operator keanggotaan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow">4. Control flow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-kondisional">Statement kondisional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">Loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-break-contitue">Statement <code class="docutils literal notranslate"><span class="pre">break</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">contitue</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collections">5. Collections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list">List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple">Tuple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionary">Dictionary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-untuk-setiap-collections">Iterasi untuk setiap collections</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-i-o-dan-error-handling">6. File I/O dan Error handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-i-o">File I/O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-basic-syntax">
+<h1>Python Basic Syntax<a class="headerlink" href="#python-basic-syntax" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<section id="kompetensi">
+<h2>Kompetensi<a class="headerlink" href="#kompetensi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Memahami dasar-dasar pemrograman Python.</p></li>
+</ul>
+</section>
+<section id="indikator-keberhasilan">
+<h2>Indikator keberhasilan<a class="headerlink" href="#indikator-keberhasilan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Peserta dapat menjelaskan sintaks dasar Python (variabel, tipe data, operator, dan struktur kontrol).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hello-world">
+<h2>1. Hello world<a class="headerlink" href="#hello-world" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello world!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kita juga bisa menjalankan perintah terminal terbatas dalam code block</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>python<span class="w"> </span>--version
+<span class="o">!</span><span class="w"> </span>which<span class="w"> </span>python
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.13.2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/opn/mambaforge/envs/jupyterbook/bin/python
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sintaks-dasar-komentar-dan-variabel">
+<h2>2. Sintaks dasar, komentar, dan variabel<a class="headerlink" href="#sintaks-dasar-komentar-dan-variabel" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Python menggunakan indentasi untuk mendefinisikan code block</p></li>
+<li><p>Statement diakhiri dengan baris baru</p></li>
+</ul>
+<section id="komentar">
+<h3>Komentar<a class="headerlink" href="#komentar" title="Link to this heading">#</a></h3>
+<p>Digunakan sebagai penanda untuk memberikan informasi. Ini tidak akan dieksekusi oleh program. Komentar ditantai dengan tanda hastag (<code class="docutils literal notranslate"><span class="pre">#</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ini adalah komentar</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello World!!!&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;What is your name?&#39;</span><span class="p">)</span> <span class="c1"># komentar juga bisa ditaruh disini</span>
+
+<span class="c1"># komentar multi baris</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">If you write</span>
+<span class="sd">more</span>
+<span class="sd">than</span>
+<span class="sd">1 line</span>
+<span class="sd">of</span>
+<span class="sd">comments</span>
+<span class="sd">use triple</span>
+<span class="sd">quotes at the beginning and end of the comment</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># example of displaying numbers in the output</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World!!!
+What is your name?
+1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variabel">
+<h3>Variabel<a class="headerlink" href="#variabel" title="Link to this heading">#</a></h3>
+<p>Digunakan untuk menyimpan data atau objek tertentu (Seperti angka, hurus, dll). Variabel didefinisikan dengan menambahkan tanda sama dengan (<code class="docutils literal notranslate"><span class="pre">=</span></code>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Kang Mas Haryo Sinuwun&#39;</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">33</span>
+
+<span class="c1"># Then we display it in the output</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+
+<span class="c1"># We can also combine it</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello my name is </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, I am </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kang Mas Haryo Sinuwun
+33
+&lt;class &#39;str&#39;&gt;
+&lt;class &#39;int&#39;&gt;
+Hello my name is Kang Mas Haryo Sinuwun, I am 33 years old
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tipe-data-dasar-dan-operator">
+<h2>3. Tipe Data Dasar dan Operator<a class="headerlink" href="#tipe-data-dasar-dan-operator" title="Link to this heading">#</a></h2>
+<section id="tipe-data-dasar">
+<h3>Tipe Data Dasar<a class="headerlink" href="#tipe-data-dasar" title="Link to this heading">#</a></h3>
+<p>Tipe data: atribut yang digunakan untuk mengkategorisasi nilai dan menentukan tipe operasi dang dapat dilakukan.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Data types</p></th>
+<th class="head"><p>Symbol</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.</p></td>
+<td><p>integer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>Integers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">-10</span></code>, <code class="docutils literal notranslate"><span class="pre">1000</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2.</p></td>
+<td><p>float</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Decimal numbers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3.14</span></code>, <code class="docutils literal notranslate"><span class="pre">23.03</span></code>, <code class="docutils literal notranslate"><span class="pre">1.618</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3.</p></td>
+<td><p>string</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>Letters / sentences / character sequences</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Hello,</span> <span class="pre">world!&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Python&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>4.</p></td>
+<td><p>boolean</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>Truth value (<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Variables and data types</span>
+
+<span class="c1"># Assigning values to variables</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Kang Mas Haryo Sinuwun&quot;</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">33</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">1.70</span>
+<span class="n">is_student</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Printing the variables</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: &quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age: &quot;</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Height: &quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Is student: &quot;</span><span class="p">,</span> <span class="n">is_student</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Printing the types of the variables</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of name: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of age: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">age</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of height: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type of is_student: &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">is_student</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Name:  Kang Mas Haryo Sinuwun
+Age:  33
+Height:  1.7
+Is student:  False
+==============================
+Type of name:  &lt;class &#39;str&#39;&gt;
+Type of age:  &lt;class &#39;int&#39;&gt;
+Type of height:  &lt;class &#39;float&#39;&gt;
+Type of is_student:  &lt;class &#39;bool&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kita dapat mengkonversi tipe data </span>
+
+<span class="c1"># Integer to float</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># Output: 5.0</span>
+
+<span class="c1"># Float to integer</span>
+<span class="n">z</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>  <span class="c1"># Output: 5</span>
+
+<span class="c1"># Integer to string</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># Output: &quot;5&quot;</span>
+
+<span class="c1"># String to integer</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>  <span class="c1"># Output: 5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.0
+5
+5
+5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operator-aritmatika">
+<h3>Operator Aritmatika<a class="headerlink" href="#operator-aritmatika" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Arithmetic Operators</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a + b = &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Addition</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a - b = &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Subtraction</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a * b = &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Multiplication</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a / b = &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Division</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a % b = &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Modulus</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a ** b = &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">**</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Exponentiation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a // b = &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="o">//</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Floor division</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a + b =  7
+a - b =  -1
+a * b =  12
+a / b =  0.75
+a % b =  3
+a ** b =  81
+a // b =  0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operator-perbandingan">
+<h3>Operator Perbandingan<a class="headerlink" href="#operator-perbandingan" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Comparison Operators</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x &gt; y is &quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">)</span>   <span class="c1"># Greater than</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x &lt; y is &quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">)</span>   <span class="c1"># Less than</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x == y is &quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Equal to</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x != y is &quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Not equal to</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x &gt;= y is &quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Greater than or equal to</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x &lt;= y is &quot;</span><span class="p">,</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Less than or equal to</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x &gt; y is  False
+x &lt; y is  True
+x == y is  False
+x != y is  True
+x &gt;= y is  False
+x &lt;= y is  True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operator-logika">
+<h3>Operator logika<a class="headerlink" href="#operator-logika" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Logical Operators</span>
+<span class="n">a</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">b</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a and b is &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># Logical AND</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a or b is &quot;</span><span class="p">,</span> <span class="n">a</span> <span class="ow">or</span> <span class="n">c</span><span class="p">)</span>   <span class="c1"># Logical OR</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;not a is &quot;</span><span class="p">,</span> <span class="ow">not</span> <span class="n">a</span><span class="p">)</span>     <span class="c1"># Logical NOT</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a and b is  False
+a or b is  True
+not a is  False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operator-penugasan">
+<h3>Operator penugasan<a class="headerlink" href="#operator-penugasan" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">=</span>   <span class="o">&lt;</span><span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>                     <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">1</span>
+<span class="o">+=</span>  <span class="o">&lt;</span><span class="n">tambah</span> <span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>              <span class="n">a</span><span class="o">+=</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">2</span>
+<span class="o">-=</span>  <span class="o">&lt;</span><span class="n">kurang</span> <span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>              <span class="n">a</span><span class="o">-=</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">1</span>
+<span class="o">*=</span>  <span class="o">&lt;</span><span class="n">kali</span> <span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>                <span class="n">a</span><span class="o">*=</span><span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">2</span>
+<span class="o">/=</span>  <span class="o">&lt;</span><span class="n">bagi</span> <span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>                <span class="n">a</span><span class="o">/=</span><span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">1</span>
+<span class="o">%=</span>  <span class="o">&lt;</span><span class="n">sisa</span> <span class="n">bagi</span> <span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>   <span class="n">a</span><span class="o">=</span><span class="mi">10</span>    <span class="n">a</span><span class="o">%=</span><span class="mi">6</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">4</span>
+<span class="o">**=</span> <span class="o">&lt;</span><span class="n">pangkat</span> <span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>             <span class="n">a</span><span class="o">**=</span><span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">16</span>
+<span class="o">//=</span> <span class="o">&lt;</span><span class="n">bagi</span> <span class="n">bulat</span> <span class="n">sama</span> <span class="n">dengan</span><span class="o">&gt;</span>          <span class="n">a</span><span class="o">//=</span><span class="mi">3</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="mi">5</span>        
+</pre></div>
+</div>
+</section>
+<section id="operator-identitas">
+<h3>Operator Identitas<a class="headerlink" href="#operator-identitas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Identity Operator</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># The &quot;is&quot; operator to check whether two variables refer to the same object in memory</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span> <span class="ow">is</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># Output: True, because x and y refer to the same object in memory</span>
+
+<span class="c1"># The &quot;is not&quot; operator to check whether two variables do not refer to the same object in memory</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># Output: False, because x and y refer to the same object in memory</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+False
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operator-keanggotaan">
+<h3>Operator keanggotaan<a class="headerlink" href="#operator-keanggotaan" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s2">&quot;Kang Mas&quot;</span>
+
+<span class="c1"># The &quot;in&quot; operator to check whether a certain character is in a string</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A&#39;</span> <span class="ow">in</span> <span class="n">my_string</span><span class="p">)</span> <span class="c1"># Output: True, because &#39;A&#39; is in my_string</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="n">my_string</span><span class="p">)</span> <span class="c1"># Output: False, because &#39;z&#39; is not in my_string</span>
+
+<span class="c1"># The &quot;not in&quot; operator to check whether a certain character is not in a string</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">my_string</span><span class="p">)</span> <span class="c1"># Output: False, because &#39;A&#39; is in my_string</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;z&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">my_string</span><span class="p">)</span> <span class="c1"># Output: True, because &#39;z&#39; is not in my_string</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+False
+True
+True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="control-flow">
+<h2>4. Control flow<a class="headerlink" href="#control-flow" title="Link to this heading">#</a></h2>
+<section id="statement-kondisional">
+<h3>Statement kondisional<a class="headerlink" href="#statement-kondisional" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">If statement</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is greater than 5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is greater than 5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">if-elif-else Statement</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is greater than 15&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is 10&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is not greater than 15 and not equal to 10&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x is 10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="loop">
+<h3>Loop<a class="headerlink" href="#loop" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># while loop</span>
+
+<span class="n">number</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">number</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Now the number to&#39;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span> <span class="c1"># pay attention to whitespace</span>
+    <span class="n">number</span><span class="o">+=</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Now the number to 0
+Now the number to 1
+Now the number to 2
+Now the number to 3
+Now the number to 4
+Now the number to 5
+Now the number to 6
+Now the number to 7
+Now the number to 8
+Now the number to 9
+Done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># for loop</span>
+<span class="n">food</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bread&#39;</span><span class="p">,</span> <span class="s1">&#39;omelet&#39;</span><span class="p">,</span> <span class="s1">&#39;kebab&#39;</span><span class="p">,</span> <span class="s1">&#39;Padang rice&#39;</span><span class="p">,</span> <span class="s1">&#39;duck rice&#39;</span><span class="p">,</span> <span class="s1">&#39;meatballs&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">food</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I eat&#39;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I eat bread
+I eat omelet
+I eat kebab
+I eat Padang rice
+I eat duck rice
+I eat meatballs
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="statement-break-contitue">
+<h3>Statement <code class="docutils literal notranslate"><span class="pre">break</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">contitue</span></code><a class="headerlink" href="#statement-break-contitue" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Break statement</span>
+<span class="c1">## The break statement is used to exit a loop prematurely.</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Continue statement</span>
+<span class="c1">## The continue statement skips the current iteration and continues with the next iteration.</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+4
+5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="collections">
+<h2>5. Collections<a class="headerlink" href="#collections" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Data Types</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+<td><p>Mutable ordering of objects</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">0,</span> <span class="pre">&quot;a&quot;,</span> <span class="pre">&quot;c&quot;,</span> <span class="pre">'e',</span> <span class="pre">-9]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>2.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code></p></td>
+<td><p>Immutable ordering of objects</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">0,</span> <span class="pre">&quot;a&quot;,</span> <span class="pre">&quot;c&quot;,</span> <span class="pre">'e',</span> <span class="pre">-9)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>3.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
+<td><p>Group of couples <code class="docutils literal notranslate"><span class="pre">{key:</span> <span class="pre">value}</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;name&quot;:</span> <span class="pre">&quot;Kang</span> <span class="pre">Mas</span> <span class="pre">Haryo</span> <span class="pre">Sinuwun&quot;,</span> <span class="pre">&quot;age&quot;:33}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="list">
+<h3>List<a class="headerlink" href="#list" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Lists are ordered collections that are changeable and allow duplicate elements.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Creating a List</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># Output: [&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;]</span>
+
+<span class="c1"># Accessing Elements</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Output: apple</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Output: banana</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Output: cherry</span>
+
+<span class="c1"># Adding Elements</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># Output: [&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;orange&#39;]</span>
+
+<span class="c1"># Removing Elements</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;banana&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># Output: [&#39;apple&#39;, &#39;cherry&#39;, &#39;orange&#39;]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;]
+apple
+banana
+cherry
+[&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;, &#39;orange&#39;]
+[&#39;apple&#39;, &#39;cherry&#39;, &#39;orange&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuple">
+<h3>Tuple<a class="headerlink" href="#tuple" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Tuples are ordered collections that are unchangeable and allow duplicate elements.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Creating a Tuple</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>  <span class="c1"># Output: (1, 2, 3)</span>
+
+<span class="c1"># Accessing Elements</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Output: 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Output: 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coordinates</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Output: 3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 3)
+1
+2
+3
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="set">
+<h3>Set<a class="headerlink" href="#set" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Sets are unordered collections that do not allow duplicate elements.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Creating a Set</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># Output: {&#39;banana&#39;, &#39;cherry&#39;, &#39;apple&#39;}</span>
+
+<span class="c1"># Adding Elements</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># Output: {&#39;banana&#39;, &#39;cherry&#39;, &#39;apple&#39;, &#39;orange&#39;}</span>
+
+<span class="c1"># Removing Elements</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;banana&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span>  <span class="c1"># Output: {&#39;cherry&#39;, &#39;apple&#39;, &#39;orange&#39;}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;apple&#39;, &#39;cherry&#39;, &#39;banana&#39;}
+{&#39;apple&#39;, &#39;cherry&#39;, &#39;banana&#39;, &#39;orange&#39;}
+{&#39;apple&#39;, &#39;cherry&#39;, &#39;orange&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dictionary">
+<h3>Dictionary<a class="headerlink" href="#dictionary" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Dictionaries are collections of key-value pairs.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># Creating a Dictionary</span>
+<span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Kang Mas&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Surakarta&quot;</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>  <span class="c1"># Output: {&#39;name&#39;: &#39;Kang Mas&#39;, &#39;age&#39;: 33, &#39;city&#39;: &#39;Yogyakarta&#39;}</span>
+
+<span class="c1"># Accessing Values</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>  <span class="c1"># Output: Kang Mas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">])</span>   <span class="c1"># Output: 33</span>
+
+<span class="c1"># Adding Key-Value Pairs</span>
+<span class="n">person</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;kangmas@example.com&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>  <span class="c1"># Output: {&#39;name&#39;: &#39;Kang Mas&#39;, &#39;age&#39;: 33, &#39;city&#39;: &#39;Yogyakarta&#39;, &#39;email&#39;: &#39;kangmas@example.com&#39;}</span>
+
+<span class="c1"># Removing Key-Value Pairs</span>
+<span class="n">person</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>  <span class="c1"># Output: {&#39;name&#39;: &#39;Kang Mas&#39;, &#39;city&#39;: &#39;Yogyakarta&#39;, &#39;email&#39;: &#39;kangmas@example.com&#39;}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: &#39;Kang Mas&#39;, &#39;age&#39;: 33, &#39;city&#39;: &#39;Surakarta&#39;}
+Kang Mas
+33
+{&#39;name&#39;: &#39;Kang Mas&#39;, &#39;age&#39;: 33, &#39;city&#39;: &#39;Surakarta&#39;, &#39;email&#39;: &#39;kangmas@example.com&#39;}
+{&#39;name&#39;: &#39;Kang Mas&#39;, &#39;city&#39;: &#39;Surakarta&#39;, &#39;email&#39;: &#39;kangmas@example.com&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iterasi-untuk-setiap-collections">
+<h3>Iterasi untuk setiap collections<a class="headerlink" href="#iterasi-untuk-setiap-collections" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Iterating Through a List</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+
+<span class="c1"># Iterating Through a Tuple</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">coordinate</span> <span class="ow">in</span> <span class="n">coordinates</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">coordinate</span><span class="p">)</span>
+
+<span class="c1"># Iterating Through a Set</span>
+<span class="n">fruits</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;cherry&quot;</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+
+<span class="c1"># Iterating Through a Dictionary</span>
+<span class="n">person</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;New York&quot;</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">person</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>apple
+banana
+cherry
+1
+2
+3
+apple
+cherry
+banana
+name: Alice
+age: 25
+city: New York
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="file-i-o-dan-error-handling">
+<h2>6. File I/O dan Error handling<a class="headerlink" href="#file-i-o-dan-error-handling" title="Link to this heading">#</a></h2>
+<section id="file-i-o">
+<h3>File I/O<a class="headerlink" href="#file-i-o" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input</span>
+<span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What is your name? &quot;</span><span class="p">)</span>
+<span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;How old are you? &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">! You are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Input</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;What is your name? &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;How old are you? &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">! You are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old.&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/ipykernel/kernelbase.py:1281,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1279</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1280</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1281</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1282</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1283</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1284</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1285</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1286</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1287</span> <span class="p">)</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Output to File</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;First line</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Second line</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Third line</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># other style</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;First line another way</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Second line another way</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="error-handling">
+<h3>Error handling<a class="headerlink" href="#error-handling" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Simple Exception Handling</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Receive input from the user</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter an odd number: &quot;</span><span class="p">))</span>
+
+    <span class="c1"># Check if the number is odd</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Error: The number must be odd!&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Now this is an odd number:&quot;</span><span class="p">,</span> <span class="n">number</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+  <span class="c1"># Handle exceptions if the number entered is not odd</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Enter an odd number:  8
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: The number must be odd!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Exception Handling Complex</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Opening a file for reading</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="c1"># Reading the contents of the file</span>
+    <span class="n">isi_file</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># Closing the file</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="c1"># Handle exceptions if the file is not found</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: File not found!&quot;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+    <span class="c1"># Handle general exceptions if an error occurs while reading or writing a file</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: An error occurred while reading or writing the file!&quot;</span><span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># This block will be executed if no exception occurs</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File contents:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">isi_file</span><span class="p">)</span>
+
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c1"># This block will be executed regardless of what happens</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Program completed.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: File not found!
+Program completed.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./1_"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1_1_2_jupyterlab.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Jupyterlab as an IDE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1_1_4_python_function_mod_lib.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python function, module, and library</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hello-world">1. Hello world</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sintaks-dasar-komentar-dan-variabel">2. Sintaks dasar, komentar, dan variabel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#komentar">Komentar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabel">Variabel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data-dasar-dan-operator">3. Tipe Data Dasar dan Operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data-dasar">Tipe Data Dasar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-aritmatika">Operator Aritmatika</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-perbandingan">Operator Perbandingan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-logika">Operator logika</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-penugasan">Operator penugasan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-identitas">Operator Identitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-keanggotaan">Operator keanggotaan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow">4. Control flow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-kondisional">Statement kondisional</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">Loop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-break-contitue">Statement <code class="docutils literal notranslate"><span class="pre">break</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">contitue</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collections">5. Collections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list">List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple">Tuple</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Set</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionary">Dictionary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iterasi-untuk-setiap-collections">Iterasi untuk setiap collections</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-i-o-dan-error-handling">6. File I/O dan Error handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-i-o">File I/O</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-handling">Error handling</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tim Teknis Direktorat Meteorologi Maritim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

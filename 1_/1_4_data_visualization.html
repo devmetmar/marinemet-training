@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = '1_/1_4_data_visualization';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Pembuatan Produk Klimatologis Maritim Perairan untuk Wilayah Provinsi" href="../2_/2_0_intro.html" />
+    <link rel="next" title="Multidimensional data processing and visualization" href="../2_/2_0_intro.html" />
     <link rel="prev" title="Tabular data manipulation" href="1_3_data_manipulation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -180,17 +180,20 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="1_0_intro.html">Pengenalan bahasa pemrograman python untuk pengolahan data meteorologi maritim</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="1_1_intro_python.html">Dasar-dasar pemrograman Python, package manager, dan IDE (Integrated Development Environment)</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="1_0_intro.html">Introduction to Python</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_1_1_understanding_python_conda.html">Understanding python and conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_2_jupyterlab.html">Jupyterlab as an IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_3_python_basic_syntax.html">Python Basic Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_4_python_function_mod_lib.html">Python function, module, and library</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_2_python_libraries.html">Python scientific libraries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="1_3_data_manipulation.html">Tabular data manipulation</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Data visualization</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_/2_0_intro.html">Pembuatan Produk Klimatologis Maritim Perairan untuk Wilayah Provinsi</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_/2_1_data_processing_xarray.html">Pengolahan data multidimensi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_/2_2_geospatial_data_visualization.html">Visualisasi data geospasial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Pembuatan produk klimatologi meteorologi maritim</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_/2_0_intro.html">Multidimensional data processing and visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_1_data_processing_xarray.html">Multidimensional data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_2_geospatial_data_visualization.html">Spatial data visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Climatological product</a></li>
 </ul>
 </details></li>
 </ul>
@@ -390,10 +393,10 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-line-bar-plot">A. Line &amp; Bar Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-scatter-plot">B. Scatter Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-histogram">C. Histogram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-multiple-plot">D. Multiple Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#line-bar-plot">Line &amp; Bar Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">Scatter Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">Histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-plot">Multiple Plot</a></li>
 </ul>
             </nav>
         </div>
@@ -407,8 +410,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-visualization">
 <h1>Data visualization<a class="headerlink" href="#data-visualization" title="Link to this heading">#</a></h1>
-<p>Penyusun: Tim Teknis Direktorat Meteorologi Maritim</p>
-<p>Kontak: <a class="reference external" href="mailto:suwignyo&#46;prasetyo&#37;&#52;&#48;bmkg&#46;go&#46;id">suwignyo<span>&#46;</span>prasetyo<span>&#64;</span>bmkg<span>&#46;</span>go<span>&#46;</span>id</a></p>
 <hr class="docutils" />
 <section id="kompetensi">
 <h2>Kompetensi<a class="headerlink" href="#kompetensi" title="Link to this heading">#</a></h2>
@@ -731,8 +732,8 @@ document.write(`
 </div></div></div>
 </div>
 </section>
-<section id="a-line-bar-plot">
-<h2>A. Line &amp; Bar Plot<a class="headerlink" href="#a-line-bar-plot" title="Link to this heading">#</a></h2>
+<section id="line-bar-plot">
+<h2>Line &amp; Bar Plot<a class="headerlink" href="#line-bar-plot" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LINE PLOT</span>
@@ -809,8 +810,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="b-scatter-plot">
-<h2>B. Scatter Plot<a class="headerlink" href="#b-scatter-plot" title="Link to this heading">#</a></h2>
+<section id="scatter-plot">
+<h2>Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -867,8 +868,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="c-histogram">
-<h2>C. Histogram<a class="headerlink" href="#c-histogram" title="Link to this heading">#</a></h2>
+<section id="histogram">
+<h2>Histogram<a class="headerlink" href="#histogram" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -891,8 +892,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="d-multiple-plot">
-<h2>D. Multiple Plot<a class="headerlink" href="#d-multiple-plot" title="Link to this heading">#</a></h2>
+<section id="multiple-plot">
+<h2>Multiple Plot<a class="headerlink" href="#multiple-plot" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -1011,7 +1012,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Pembuatan Produk Klimatologis Maritim Perairan untuk Wilayah Provinsi</p>
+        <p class="prev-next-title">Multidimensional data processing and visualization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1033,10 +1034,10 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-line-bar-plot">A. Line &amp; Bar Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-scatter-plot">B. Scatter Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-histogram">C. Histogram</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-multiple-plot">D. Multiple Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#line-bar-plot">Line &amp; Bar Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">Scatter Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">Histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-plot">Multiple Plot</a></li>
 </ul>
   </nav></div>
 
