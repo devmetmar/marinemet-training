@@ -1,0 +1,123 @@
+Traceback (most recent call last):
+  File "/home/opn/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/opn/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/opn/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/opn/mambaforge/envs/jupyterbook/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/opn/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/opn/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/opn/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+lifile = [
+    "http://web.pusmar.id:8082/opendap/inawaves_hindcast/2025/H_hires_202501.nc",
+    "http://web.pusmar.id:8082/opendap/inawaves_hindcast/2025/H_hires_202502.nc"
+]
+dsetmf = xr.open_mfdataset(lifile)
+dsetmf
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 5[39m
+[32m      1[39m lifile = [
+[32m      2[39m     [33m"[39m[33mhttp://web.pusmar.id:8082/opendap/inawaves_hindcast/2025/H_hires_202501.nc[39m[33m"[39m,
+[32m      3[39m     [33m"[39m[33mhttp://web.pusmar.id:8082/opendap/inawaves_hindcast/2025/H_hires_202502.nc[39m[33m"[39m
+[32m      4[39m ]
+[32m----> [39m[32m5[39m dsetmf = [43mxr[49m[43m.[49m[43mopen_mfdataset[49m[43m([49m[43mlifile[49m[43m)[49m
+[32m      6[39m dsetmf
+
+[36mFile [39m[32m~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/xarray/backends/api.py:1634[39m, in [36mopen_mfdataset[39m[34m(paths, chunks, concat_dim, compat, preprocess, engine, data_vars, coords, combine, parallel, join, attrs_file, combine_attrs, **kwargs)[39m
+[32m   1631[39m     open_ = open_dataset
+[32m   1632[39m     getattr_ = [38;5;28mgetattr[39m
+[32m-> [39m[32m1634[39m datasets = [[43mopen_[49m[43m([49m[43mp[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mopen_kwargs[49m[43m)[49m [38;5;28;01mfor[39;00m p [38;5;129;01min[39;00m paths1d]
+[32m   1635[39m closers = [getattr_(ds, [33m"[39m[33m_close[39m[33m"[39m) [38;5;28;01mfor[39;00m ds [38;5;129;01min[39;00m datasets]
+[32m   1636[39m [38;5;28;01mif[39;00m preprocess [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/xarray/backends/api.py:692[39m, in [36mopen_dataset[39m[34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[39m
+[32m    685[39m overwrite_encoded_chunks = kwargs.pop([33m"[39m[33moverwrite_encoded_chunks[39m[33m"[39m, [38;5;28;01mNone[39;00m)
+[32m    686[39m backend_ds = backend.open_dataset(
+[32m    687[39m     filename_or_obj,
+[32m    688[39m     drop_variables=drop_variables,
+[32m    689[39m     **decoders,
+[32m    690[39m     **kwargs,
+[32m    691[39m )
+[32m--> [39m[32m692[39m ds = [43m_dataset_from_backend_dataset[49m[43m([49m
+[32m    693[39m [43m    [49m[43mbackend_ds[49m[43m,[49m
+[32m    694[39m [43m    [49m[43mfilename_or_obj[49m[43m,[49m
+[32m    695[39m [43m    [49m[43mengine[49m[43m,[49m
+[32m    696[39m [43m    [49m[43mchunks[49m[43m,[49m
+[32m    697[39m [43m    [49m[43mcache[49m[43m,[49m
+[32m    698[39m [43m    [49m[43moverwrite_encoded_chunks[49m[43m,[49m
+[32m    699[39m [43m    [49m[43minline_array[49m[43m,[49m
+[32m    700[39m [43m    [49m[43mchunked_array_type[49m[43m,[49m
+[32m    701[39m [43m    [49m[43mfrom_array_kwargs[49m[43m,[49m
+[32m    702[39m [43m    [49m[43mdrop_variables[49m[43m=[49m[43mdrop_variables[49m[43m,[49m
+[32m    703[39m [43m    [49m[43m*[49m[43m*[49m[43mdecoders[49m[43m,[49m
+[32m    704[39m [43m    [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m,[49m
+[32m    705[39m [43m[49m[43m)[49m
+[32m    706[39m [38;5;28;01mreturn[39;00m ds
+
+[36mFile [39m[32m~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/xarray/backends/api.py:402[39m, in [36m_dataset_from_backend_dataset[39m[34m(backend_ds, filename_or_obj, engine, chunks, cache, overwrite_encoded_chunks, inline_array, chunked_array_type, from_array_kwargs, **extra_tokens)[39m
+[32m    400[39m     ds = backend_ds
+[32m    401[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m402[39m     ds = [43m_chunk_ds[49m[43m([49m
+[32m    403[39m [43m        [49m[43mbackend_ds[49m[43m,[49m
+[32m    404[39m [43m        [49m[43mfilename_or_obj[49m[43m,[49m
+[32m    405[39m [43m        [49m[43mengine[49m[43m,[49m
+[32m    406[39m [43m        [49m[43mchunks[49m[43m,[49m
+[32m    407[39m [43m        [49m[43moverwrite_encoded_chunks[49m[43m,[49m
+[32m    408[39m [43m        [49m[43minline_array[49m[43m,[49m
+[32m    409[39m [43m        [49m[43mchunked_array_type[49m[43m,[49m
+[32m    410[39m [43m        [49m[43mfrom_array_kwargs[49m[43m,[49m
+[32m    411[39m [43m        [49m[43m*[49m[43m*[49m[43mextra_tokens[49m[43m,[49m
+[32m    412[39m [43m    [49m[43m)[49m
+[32m    414[39m ds.set_close(backend_ds._close)
+[32m    416[39m [38;5;66;03m# Ensure source filename always stored in dataset object[39;00m
+
+[36mFile [39m[32m~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/xarray/backends/api.py:350[39m, in [36m_chunk_ds[39m[34m(backend_ds, filename_or_obj, engine, chunks, overwrite_encoded_chunks, inline_array, chunked_array_type, from_array_kwargs, **extra_tokens)[39m
+[32m    339[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_chunk_ds[39m(
+[32m    340[39m     backend_ds,
+[32m    341[39m     filename_or_obj,
+[32m   (...)[39m[32m    348[39m     **extra_tokens,
+[32m    349[39m ):
+[32m--> [39m[32m350[39m     chunkmanager = [43mguess_chunkmanager[49m[43m([49m[43mchunked_array_type[49m[43m)[49m
+[32m    352[39m     [38;5;66;03m# TODO refactor to move this dask-specific logic inside the DaskManager class[39;00m
+[32m    353[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(chunkmanager, DaskManager):
+
+[36mFile [39m[32m~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/xarray/namedarray/parallelcompat.py:116[39m, in [36mguess_chunkmanager[39m[34m(manager)[39m
+[32m    114[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(manager, [38;5;28mstr[39m):
+[32m    115[39m     [38;5;28;01mif[39;00m manager [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m available_chunkmanagers [38;5;129;01mand[39;00m manager [38;5;129;01min[39;00m KNOWN_CHUNKMANAGERS:
+[32m--> [39m[32m116[39m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(
+[32m    117[39m             [33mf[39m[33m"[39m[33mchunk manager [39m[38;5;132;01m{[39;00mmanager[38;5;132;01m!r}[39;00m[33m is not available.[39m[33m"[39m
+[32m    118[39m             [33mf[39m[33m"[39m[33m Please make sure [39m[38;5;132;01m{[39;00mKNOWN_CHUNKMANAGERS[manager][38;5;132;01m!r}[39;00m[33m is installed[39m[33m"[39m
+[32m    119[39m             [33m"[39m[33m and importable.[39m[33m"[39m
+[32m    120[39m         )
+[32m    121[39m     [38;5;28;01melif[39;00m [38;5;28mlen[39m(available_chunkmanagers) == [32m0[39m:
+[32m    122[39m         [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(
+[32m    123[39m             [33m"[39m[33mno chunk managers available. Try installing `dask` or another package[39m[33m"[39m
+[32m    124[39m             [33m"[39m[33m that provides a chunk manager.[39m[33m"[39m
+[32m    125[39m         )
+
+[31mImportError[39m: chunk manager 'dask' is not available. Please make sure 'dask' is installed and importable.
+
