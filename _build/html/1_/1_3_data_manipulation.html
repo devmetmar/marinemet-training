@@ -391,8 +391,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dan-membersihkan-data">Membaca dan membersihkan data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memanipulasi-data">Memanipulasi data</a></li>
 </ul>
@@ -408,23 +406,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tabular-data-manipulation">
 <h1>Tabular data manipulation<a class="headerlink" href="#tabular-data-manipulation" title="Link to this heading">#</a></h1>
-<p>Penyusun: Tim Teknis Direktorat Meteorologi Maritim</p>
-<p>Kontak: <a class="reference external" href="mailto:suwignyo&#46;prasetyo&#37;&#52;&#48;bmkg&#46;go&#46;id">suwignyo<span>&#46;</span>prasetyo<span>&#64;</span>bmkg<span>&#46;</span>go<span>&#46;</span>id</a></p>
-<hr class="docutils" />
-<section id="kompetensi">
-<h2>Kompetensi<a class="headerlink" href="#kompetensi" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Mampu membaca, membersihkan, dan memanipulasi data meteorologi maritim.</p></li>
-</ul>
-</section>
-<section id="indikator-keberhasilan">
-<h2>Indikator keberhasilan<a class="headerlink" href="#indikator-keberhasilan" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Peserta dapat membaca data dari file CSV, Excel, atau format tabular lainnya menggunakan Pandas.</p></li>
-<li><p>Peserta dapat membersihkan data (handling missing value dan filtering) dan memanipulasi data tabular (sorting, grouping, dan agregasi).</p></li>
-</ol>
-</section>
-<hr class="docutils" />
+<blockquote>
+<div><p>Setelah membaca ini, pembaca diharapkan dapat membaca, membersihkan, dan memanipulasi data tabular.</p>
+</div></blockquote>
 <section id="membaca-dan-membersihkan-data">
 <h2>Membaca dan membersihkan data<a class="headerlink" href="#membaca-dan-membersihkan-data" title="Link to this heading">#</a></h2>
 <p>Proses analisis data sepenuhnya disesuaikan dengan tujuan dan sifat dari data yang akan di analisis. Dalam praktik ini, kita akan memproses data waterlevel dari pengukuran MAWS Tanjung Priok. Data sampel tersedia dalam rentang waktu Agustus - September 2021, dengan resolusi temporal 10 menit.</p>
@@ -1026,7 +1010,7 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1425217/835470890.py:10: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1710561/835470890.py:10: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -1034,7 +1018,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
   df_filtered[&#39;waterlevellag1&#39;] = df_filtered[&#39;waterlevel&#39;].shift(periods=1)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1425217/835470890.py:11: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1710561/835470890.py:11: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -1256,7 +1240,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f36ddeb9d30&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f5894045d30&gt;
 </pre></div>
 </div>
 </div>
@@ -2284,8 +2268,6 @@ time
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompetensi">Kompetensi</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indikator-keberhasilan">Indikator keberhasilan</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dan-membersihkan-data">Membaca dan membersihkan data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memanipulasi-data">Memanipulasi data</a></li>
 </ul>
