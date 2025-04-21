@@ -190,7 +190,7 @@ class plotter:
     
         return latlon_intv, int(arw_intv), arw_scale
     
-    def run_plot(
+    def plot_map(
         self, 
         model:str,
         ds:xr.Dataset, 
@@ -314,29 +314,58 @@ class plotter:
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print(f"Raised.\n")
     
-    def wind_rose(self):
+    def plot_rose(self):
         pass
-        
     
 class klimtool(plotter):
     
     def __init__(self):
         super().__init__()
-        self.__INAWAVE_PATH__ = "/data/local/ofs/inawaves_combined.zarr"
-        self.__INAFLOW_PATH__ = "/data/local/ofs/inawaves_combined.zarr"
+        self.__INAWAVE_PATH__ = "/data/local/marine-training/data/ofs/inawaves_sample.zarr"
+        self.__INAFLOW_PATH__ = "/data/local/marine-training/data/ofs/inaflows_sample.zarr"
         self.__INACAWO_PATH__ = "/data/local/ofs/inacawo.zarr"
     
-    def open_inacawo(self):
-        pass
-    
-    def open_inawaves(self):
-        dset = xr.open_zarr(self.__INAWAVE_PATH__).sel(time=slice('2019-01-01', '2024-12-31T21:00:00'))
+    def open_inacawo(self, tstart, tend, latlon):
+        import s3fs
+        
+        fs = s3fs.S3FileSystem(
+            key="5xdOKxSUzGXFhbCV2wlD",
+            secret="6AEEtpwh2vFUydYpOVelfEjLiyxG2wTn6s58RpFm",
+            client_kwargs={"endpoint_url":"http://172.17.0.1:9990"}
+        )
+        bucketpath = "zarr-data"
+        objectpath = "combined"
+        zarr_path = bucketpath + "/" + objectpath
+        mapper = fs.get_mapper(zarr_path)
+        dset = xr.open_zarr(mapper, consolidated=True, decode_times=True).drop_duplicates(dim='time')
+        if pd.to_datetime(tstart) < pd.to_datetime(dset.time.data[0]):
+            tstart = datetime(2025, 4, 1)
+        if pd.to_datetime(tend) < pd.to_datetime(dset.time.data[0]):
+            tend = pd.to_datetime(dset.time.data[-1])
+        elif pd.to_datetime(tend) > pd.to_datetime(dset.time.data[-1]):
+            tend = pd.to_datetime(dset.time.data[-1] )      
+        dset = dset.sel(time=slice(tstart, tend), lon=slice(latlon[0], latlon[1]), lat=slice(latlon[2], latlon[3]))[[var for var in list(dset) if 'tau' not in var]]
         return dset
     
-    def open_inaflows(self):
-        dset = xr.open_zarr(self.__INAFLOW_PATH__).sel(time=slice('2019-01-01', '2024-12-31T21:00:00'))
+    def open_inawaves(self, tstart, tend, latlon):
+        dset = xr.open_zarr(self.__INAWAVE_PATH__)
+        print(type(tend))
+        print(type(dset.time.data[0]))
+        if pd.to_datetime(tend) < pd.to_datetime(dset.time.data[0]):
+            tend = pd.to_datetime(dset.time.data[-1])
+        elif pd.to_datetime(tend) > pd.to_datetime(dset.time.data[-1]):
+            tend = pd.to_datetime(dset.time.data[-1])
+        dset = dset.sel(time=slice(tstart, tend), lon=slice(latlon[0], latlon[1]), lat=slice(latlon[2], latlon[3]))[[var for var in list(dset) if 'tau' not in var]]
         return dset
     
+    def open_inaflows(self, tstart, tend, latlon):
+        dset = xr.open_zarr(self.__INAFLOW_PATH__)
+        if pd.to_datetime(tend) < pd.to_datetime(dset.time.data[0]):
+            tend = pd.to_datetime(dset.time.data[-1])
+        elif pd.to_datetime(tend) > pd.to_datetime(dset.time.data[-1]):
+            tend = pd.to_datetime(dset.time.data[-1])
+        dset = dset.sel(time=slice(tstart, tend), lon=slice(latlon[0], latlon[1]), lat=slice(latlon[2], latlon[3]))[[var for var in list(dset) if 'tau' not in var]]
+        return dset
 
 class mapCollection:
     """
