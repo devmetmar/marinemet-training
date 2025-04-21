@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -148,14 +148,8 @@
   
   
   
-    
-    
-      
-    
-    
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Pelatihan Pengolahan Data Meteorologi Maritim - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Pelatihan Pengolahan Data Meteorologi Maritim - Home"/>`);</script>
   
+    <p class="title logo__title">Pelatihan Pengolahan Data Meteorologi Maritim</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -465,10 +459,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.13.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.13.3
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/opn/mambaforge/envs/jupyterbook/bin/python
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/conda/envs/ofs/bin/python
 </pre></div>
 </div>
 </div>
@@ -1064,8 +1058,8 @@ cherry
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;banana&#39;, &#39;apple&#39;, &#39;cherry&#39;}
-{&#39;orange&#39;, &#39;banana&#39;, &#39;apple&#39;, &#39;cherry&#39;}
-{&#39;orange&#39;, &#39;apple&#39;, &#39;cherry&#39;}
+{&#39;banana&#39;, &#39;apple&#39;, &#39;orange&#39;, &#39;cherry&#39;}
+{&#39;apple&#39;, &#39;orange&#39;, &#39;cherry&#39;}
 </pre></div>
 </div>
 </div>
@@ -1184,7 +1178,7 @@ city: New York
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">age</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;How old are you? &quot;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">! You are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old.&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/mambaforge/envs/jupyterbook/lib/python3.13/site-packages/ipykernel/kernelbase.py:1281,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="nn">File /opt/conda/envs/ofs/lib/python3.13/site-packages/ipykernel/kernelbase.py:1281,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1279</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1280</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
 <span class="ne">-&gt; </span><span class="mi">1281</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -1303,16 +1297,16 @@ Program completed.
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "ofs"
         },
         kernelOptions: {
-            name: "python3",
+            name: "ofs",
             path: "./1_"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ofs'</script>
 
                 </article>
               
