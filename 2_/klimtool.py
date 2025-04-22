@@ -56,7 +56,7 @@ class plotter:
         """
 
         fig, ax = plt.subplots(figsize=(10, 10), subplot_kw={'projection': ccrs.PlateCarree()})
-        
+        ax.set_extent([min(lon_data), max(lon_data), min(lat_data), max(lat_data)], crs=ccrs.PlateCarree())
         gl = ax.gridlines(crs=ccrs.PlateCarree(), draw_labels=True, linewidth=0.2, color='w')
         gl.top_labels = False
         gl.right_labels = False
@@ -72,33 +72,33 @@ class plotter:
             google: cartopy.io.img_tiles.GoogleTiles = cimgt.GoogleTiles(style='satellite')
             zoom = zoom4google
             scale = np.ceil(-np.sqrt(2)*np.log(np.divide(zoom,350.0)))
-            ax.add_image(google, int(scale), zorder=0)
+            ax.add_image(google, int(scale), zorder=2)
         else:
-            ax.add_feature(BORDERS, linewidth=1)
-            ax.add_feature(LAND, edgecolor='black', facecolor='lightgray', zorder=0)
-            ax.add_feature(COASTLINE, linewidth=1)
+            ax.add_feature(BORDERS, linewidth=1, zorder=3)
+            ax.add_feature(LAND, edgecolor='black', facecolor='lightgray', zorder=2)
+            ax.add_feature(COASTLINE, linewidth=1, zorder=3)
 
         if u_comp is not None:
-            cmap.set_over('magenta')
+            cmap.set_over('maroon')
             mag = ax.contourf(lon_data, lat_data, magnitude, cmap=cmap, norm=norm, levels=bounds, transform=ccrs.PlateCarree(), zorder=1, extend='max')
-            ax.quiver(lon_data[::skip], lat_data[::skip], u_comp[::skip, ::skip], v_comp[::skip, ::skip], units='inches', scale=scale, pivot='mid', width=0.01125, transform=ccrs.PlateCarree(), zorder=1)
+            ax.quiver(lon_data[::skip], lat_data[::skip], u_comp[::skip, ::skip], v_comp[::skip, ::skip], units='inches', scale=scale, pivot='mid', width=0.01125, headwidth=4, transform=ccrs.PlateCarree(), zorder=1)
 
         if u_comp is None:
-            cmap.set_over('magenta')
+            cmap.set_over('maroon')
             cmap.set_under('indigo')
             mag = ax.contourf(lon_data, lat_data, magnitude, cmap=cmap, norm=norm, levels=bounds, transform=ccrs.PlateCarree(), zorder=1, extend='both')
 
         if plot_shapefile==True:
             try:
                 gdf_plot=gpd.read_file(f'{shp}.shp')
-                ax = gdf_plot.plot(ax=ax, edgecolor="black", linewidth=1.5)
+                ax = gdf_plot.plot(ax=ax, edgecolor="black", linewidth=1.5, zorder=3)
             except:
                 gdf_plot=shp
-                ax = gdf_plot.plot(ax=ax, edgecolor="black", linewidth=1.5)
+                ax = gdf_plot.plot(ax=ax, edgecolor="black", linewidth=1.5, zorder=3)
 
         if plotloc:
             for i, (x, y, label) in enumerate(zip(liloc[0], liloc[1], liloc[2])):
-                ax.scatter(x, y, color='red', s=60, zorder=2)
+                ax.scatter(x, y, color='red', s=60, zorder=3)
                 ax.annotate(label, (x, y), xytext=(5, -5), textcoords='offset points', fontsize=15)  # Adjust offset as needed
 
         col_bar = plt.colorbar(mag, 
@@ -115,7 +115,7 @@ class plotter:
         col_bar.ax.tick_params(labelsize=10)
         col_bar.set_label(legend_title, fontsize=10)
 
-        logobox = OffsetImage(plt.imread('img/logo60k.png'),zoom=0.5)
+        logobox = OffsetImage(plt.imread('../img/logo60k.png'),zoom=0.5)
         varbox = TextArea(
             f"BADAN METEOROLOGI KLIMATOLOGI DAN GEOFISIKA\n{map_title}",
             textprops=dict(
@@ -161,19 +161,34 @@ class plotter:
         ax.add_artist(urightbox)
         plt.savefig(file_name, bbox_inches='tight',dpi=300)
     
-    def __calculate_dynamic_plot_params__(self, lat, lon, resolution=0.025):
+    def calculate_dynamic_plot_params(self, lat, lon, resolution=0.025):
+        """
+        Menentukan parameter plotting dinamis:
+        - arw_intv: interval panah
+        - arw_scale: skala panah
+        - latlon_intv: interval grid garis lintang dan bujur
+        
+        lat, lon: array 1D dari koordinat
+        resolution: resolusi spasial dalam derajat
+        """
         lat_range = np.max(lat) - np.min(lat)
         lon_range = np.max(lon) - np.min(lon)
     
         n_lat = lat_range / resolution
         n_lon = lon_range / resolution
     
-        arw_intv = max(1, int(min(n_lat, n_lon) / 30))
-        
+        # Arrow interval
+        arw_intv = max(1, int(min(n_lat, n_lon) / 20))
+    
+        # Arrow scale
         area_scale_factor = lat_range * lon_range
-        arw_scale = 40 * (1 / np.sqrt(area_scale_factor))
+        # area_scale_factor = n_lat * n_lon
+        arw_scale = 30 * arw_intv * (1 / np.sqrt(area_scale_factor)) # dynamic arrow scale
+        print(arw_intv)
+        print(arw_scale)
         arw_scale = max(2, arw_scale)
     
+        # Lat-lon label/grid interval (dibulatkan ke 1, 2, 5, 10 tergantung skala)
         def nice_interval(range_deg):
             if range_deg < 5:
                 return 0.5
@@ -189,6 +204,7 @@ class plotter:
         latlon_intv = nice_interval(max(lat_range, lon_range))
     
         return latlon_intv, int(arw_intv), arw_scale
+
     
     def plot_map(
         self, 
@@ -196,10 +212,10 @@ class plotter:
         ds:xr.Dataset, 
         timefreq,
         var:str, 
-        wilpel:str, 
-        wilpel_name:str, 
-        map_area: str,
-        out_dir:str,
+        area_type:str, 
+        area_name:str, 
+        map_title: str,
+        file_name:str,
         google: bool = False,
         zoom4google:int = 1,
         plotloc: bool = False,
@@ -209,17 +225,21 @@ class plotter:
         lat = ds.lat.data
         lon = ds.lon.data
         res = {'inacawo':0.025, 'inawave':0.0625, 'inaflow':0.083}
-        latlon_intv, arw_intv, arw_scale = self.__calculate_dynamic_plot_params__(lat, lon, res.get(model, 0.025))
-        if wilpel == 'wilpel':
-            if wilpel_name == 'indonesia':
+        latlon_intv, arw_intv, arw_scale = self.calculate_dynamic_plot_params(lat, lon, resolution=res.get(model, 0.025))
+        if area_type == 'wilpel':
+            if area_name == 'indonesia':
                 plot_shp = False
                 shp = None
             else:
                 plot_shp = True
-                shp = stamarCollection(wilpel_name).shp   
-        elif wilpel == 'wilpro':
-            plot_shp = True
-            shp = wilproCollection(wilpel_name).shp
+                shp = stamarCollection(area_name).shp   
+        elif area_type == 'wilpro':
+            try:
+                plot_shp = True
+                shp = wilproCollection(area_name).shp
+            except:
+                plot_shp = False
+                shp = None
         else:
             plot_shp = False
             shp = None
@@ -257,30 +277,38 @@ class plotter:
             ucomp = np.cos(np.deg2rad(uvcomp))
             vcomp = np.sin(np.deg2rad(uvcomp))
             uvcomp = np.arctan2(ucomp, vcomp)
-            if model == inacawo:
+            if model == 'inacawo':
                 ucomp = -np.cos(uvcomp)
                 vcomp = -np.sin(uvcomp)
             else:
                 ucomp = np.cos(uvcomp)
                 vcomp = np.sin(uvcomp)
             ucomp, vcomp = 2*ucomp, 2*vcomp
-            
-        timeinfo = pd.to_datetime(ds.time.data)
+
+        try:
+            timeinfo = pd.to_datetime(ds.time.data)
+        except:
+            if timefreq == 'MS':
+                limonth = [month.strftime("%B") for month in pd.date_range('2020-01-01', '2020-12-01', freq='MS')]
+                timeinfo = pd.to_datetime(ds.month.data)
+            elif timefreq == '1D':
+                limonth = [month.strftime("%B") for month in pd.date_range('2020-01-01', '2020-12-01', freq='MS')]
+                timeinfo = pd.to_datetime(ds.day.data)
         map_legend = f"{param.cbrtitle} ({param.unit})"
         source = {'inacawo': 'INACAWO - 3km', 'inawave': 'INAWAVES - 6km', 'inaflow': 'INAFLOWS - 9km'}
-        right_title = f"{map_area}\n{source.get(model, None)}"
+        right_title = f"{area_name}\n{source.get(model, None)}"
         
         try:
-            print(var)
-            if timefreq == 'MS':
-                file_name = timeinfo.strftime(f"{out_dir}/{param.savename}_%Y%m.png")
-                map_title = timeinfo.strftime(f"{param.figtitle}\n%B %Y")
-            elif timefreq == '1D':
-                file_name = timeinfo.strftime(f"{out_dir}/{param.savename}_%Y%m%d.png")
-                map_title = timeinfo.strftime(f"{param.figtitle}\n%d %B %Y")
-            else:
-                file_name = timeinfo.strftime(f"{out_dir}/{param.savename}_%Y%m%d_%H%M00.png")
-                map_title = timeinfo.strftime(f"{param.figtitle}\n%d %B %Y - %H UTC")
+            # print(var)
+            # if timefreq == 'MS':
+                # file_name = timeinfo.strftime(f"{out_dir}/{param.savename}_%Y%m.png")
+                # map_title = timeinfo.strftime(f"{param.figtitle}\n%B %Y")
+            # elif timefreq == '1D':
+                # file_name = timeinfo.strftime(f"{out_dir}/{param.savename}_%Y%m%d.png")
+                # map_title = timeinfo.strftime(f"{param.figtitle}\n%d %B %Y")
+            # else:
+                # file_name = timeinfo.strftime(f"{out_dir}/{param.savename}_%Y%m%d_%H0000.png")
+                # map_title = timeinfo.strftime(f"{param.figtitle}\n%d %B %Y - %H UTC")
             self.__plotter__(lat, 
                               lon, 
                               latlon_intv, 
@@ -323,7 +351,6 @@ class klimtool(plotter):
         super().__init__()
         self.__INAWAVE_PATH__ = "/data/local/marine-training/data/ofs/inawaves_sample.zarr"
         self.__INAFLOW_PATH__ = "/data/local/marine-training/data/ofs/inaflows_sample.zarr"
-        self.__INACAWO_PATH__ = "/data/local/ofs/inacawo.zarr"
     
     def open_inacawo(self, tstart, tend, latlon):
         import s3fs
@@ -349,8 +376,6 @@ class klimtool(plotter):
     
     def open_inawaves(self, tstart, tend, latlon):
         dset = xr.open_zarr(self.__INAWAVE_PATH__)
-        print(type(tend))
-        print(type(dset.time.data[0]))
         if pd.to_datetime(tend) < pd.to_datetime(dset.time.data[0]):
             tend = pd.to_datetime(dset.time.data[-1])
         elif pd.to_datetime(tend) > pd.to_datetime(dset.time.data[-1]):
@@ -1053,7 +1078,7 @@ class wilproCollection:
     wilproCollection('ambon')
     """
     def __init__(self,spick):
-        self.shp = '/home/jupyter-tyo/tools/shp/metoswilpro/METOS_WILPRO_20231018'
+        self.shp = '/data/local/shpmetoswilpro/METOS_WILPRO_20231018'
         self.gdf_plot = gpd.read_file(f'{self.shp}.shp')
         sdict = {
                 'indonesia' : self.indonesia,
