@@ -14,6 +14,9 @@ import cartopy.io.img_tiles as cimgt
 import cartopy
 import matplotlib.ticker as mticker
 import traceback
+import os
+import matplotlib.patches as mpatches
+from matplotlib.colors import Normalize, LinearSegmentedColormap
 
 xarrayDataset = xr.core.dataset.Dataset
 xarrayDataarray = xr.core.dataarray.DataArray
@@ -232,7 +235,7 @@ class plotter:
                 shp = None
             else:
                 plot_shp = True
-                shp = stamarCollection(area_name).shp   
+                shp = stamarCollection(area_name).shp
         elif area_type == 'wilpro':
             try:
                 plot_shp = True
@@ -341,16 +344,140 @@ class plotter:
             print(f"Error in line: {e.__traceback__.tb_lineno}")  # type: ignore # 2
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print(f"Raised.\n")
+
+    def get_color_legend_patches(self, var: str):
+        """
+        Return a list of matplotlib Patch objects and labels for legend,
+        based on the variable's color scheme defined in mapCollection.
+        
+        Parameters:
+            var  : str   – variable name, e.g. 'swh', 'wind', etc.
+            bins : list  – list of bin edges
+        
+        Returns:
+            patches : list of Patch
+            labels  : list of str
+            legend_title : str
+        """
+        param = mapCollection(var)
+        
+        # Prepare colormap
+        try:
+            cmap = LinearSegmentedColormap.from_list('custom_map', param.colorbar)
+        except:
+            cmap = param.colorbar  # In case it's already a Colormap instance
+        bins = param.clev
+        norm = Normalize(vmin=min(bins), vmax=max(bins))
     
-    def plot_rose(self):
-        pass
+        patches = []
+        labels = []
+    
+        for i in range(len(bins) - 1):
+            midpoint = (bins[i] + bins[i+1]) / 2
+            color = cmap(norm(midpoint))
+            patch = mpatches.Patch(color=color, label=f"{bins[i]:.1f} – {bins[i+1]:.1f}")
+            patches.append(patch)
+            labels.append(f"{bins[i]:.1f} – {bins[i+1]:.1f}")
+    
+        # Optional: last bin (overflow)
+        overflow_color = cmap(norm(bins[-1]))
+        patches.append(mpatches.Patch(color=overflow_color, label=f">{bins[-1]:.1f}"))
+        labels.append(f">{bins[-1]:.1f}")
+    
+        legend_title = f"{param.cbrtitle} ({param.unit})"
+    
+        return patches, labels, legend_title
+        
+    def plot_rose(
+        self, 
+        model:str,
+        var:str,
+        ds:xr.Dataset,
+        bins:list,
+        map_title: str,
+        file_name:str,
+        ax=None
+    ):
+        from windrose import WindroseAxes
+        import matplotlib.gridspec as gridspec
+        
+        param = mapCollection(var)
+        try:
+            cmap = LinearSegmentedColormap.from_list('custom_map', param.colorbar)
+        except:
+            cmap = param.colorbar
+        lvl = param.clev
+
+        if var == 's' or var == 'st' or var == 'sl' or var == 'ch':
+            ucomp = None
+            vcomp = None
+            mag = ds[var]
+        elif var == 'csd':
+            ucomp = ds[param.var1]*100
+            vcomp = ds[param.var2]*100
+            mag = np.sqrt(np.square(ucomp) + np.square(vcomp))
+            uvcomp = (270 - np.degrees(np.arctan2(vcomp, ucomp))) % 360
+        elif var == 'ws':
+            if model == 'inacawo':
+                ucomp = ds[param.var1]*1.94384
+                vcomp = ds[param.var2]*1.94384
+                mag = np.sqrt(np.square(ucomp) + np.square(vcomp))
+                uvcomp = (270 - np.degrees(np.arctan2(vcomp, ucomp))) % 360
+            else:
+                ucomp = ds[param.var1]
+                vcomp = ds[param.var2]
+                mag = np.sqrt(np.square(ucomp) + np.square(vcomp))
+                uvcomp = (270 - np.degrees(np.arctan2(vcomp, ucomp))) % 360
+        else:
+            if model == 'inacawo':
+                mag = ds[param.var1]
+                uvcomp = ds[param.var2]
+            else:
+                mag = ds[param.var1]
+                uvcomp = (270 - ds[param.var2])%360
+            
+        rosedir = uvcomp
+        rosemag = mag
+
+        if ax is None:
+            fig = plt.figure(figsize=(8, 8))
+            ax_ws = WindroseAxes.from_ax(fig=fig)
+        else:
+            ax_ws = WindroseAxes.from_ax(ax=ax)
+
+        ax_ws.bar(
+            rosedir,
+            rosemag,
+            normed=True,
+            opening=0.8,
+            edgecolor='white',
+            cmap=cmap,
+            bins=lvl
+        )
+        # ax_ws.set_rticks(bins)
+        ax_ws.set_rmax(max(bins))
+        ax_ws.set_rgrids(bins, bins)
+        ax_ws.set_title(f"{map_title}", fontsize=16)
+        if ax is None:
+            ax_ws.legend(
+                title=f"{param.cbrtitle}\n({param.unit})",
+                loc='center left',
+                bbox_to_anchor=(1.05, 0.5),
+                fontsize=10,
+                title_fontsize=11,
+                frameon=True
+            )
+            plt.savefig(file_name, dpi=300, bbox_inches='tight')
+            if os.path.exists(file_name):
+                print(f"File saved at {file_name}")
+        
     
 class klimtool(plotter):
     
     def __init__(self):
         super().__init__()
-        self.__INAWAVE_PATH__ = "/data/local/marine-training/data/ofs/inawaves_sample.zarr"
-        self.__INAFLOW_PATH__ = "/data/local/marine-training/data/ofs/inaflows_sample.zarr"
+        self.__INAWAVE_PATH__ = "/data/local/marine-training/data/ofs/inawaves_sample_.zarr"
+        self.__INAFLOW_PATH__ = "/data/local/marine-training/data/ofs/inaflows_sample_.zarr"
     
     def open_inacawo(self, tstart, tend, latlon):
         import s3fs
