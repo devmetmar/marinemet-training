@@ -49,7 +49,7 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-["model     = 'inawave'", 'ds        = dsinawavesmean.isel(month=0)', "timefreq  = 'MS'", "var       = 'swh'", "area_type = 'wilpro'"]
+["model     = 'inaflow'", 'ds        = dsinaflowsmean.isel(month=0)', "timefreq  = 'MS'", "var       = 'csd'", "area_type = 'wilpro' # ganti sesuai wilayah pelayanan, atau biarkan kosong"]
 ...
 ['    area_type=area_type,', '    area_name=area_name,', '    map_title=map_title,', '    file_name=file_out', ')']
 -------------------
