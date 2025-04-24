@@ -386,6 +386,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class">Class</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library">Library</a></li>
 </ul>
@@ -458,6 +459,38 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="class">
+<h2>Class<a class="headerlink" href="#class" title="Link to this heading">#</a></h2>
+<p>Class adalah cetakan atau blueprint untuk membuat objek. Class memungkinkan kita mengelompokkan data (disebut atribut) dan fungsi (disebut method) ke dalam satu struktur. Bayangkan class seperti resep kue. Resepnya menjelaskan cara membuat kue, dan setiap objek dari class itu adalah kue nyata yang bisa dibuat dari resep tadi.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>  <span class="c1"># instance variable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>    <span class="c1"># instance variable</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">say_hello</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello, my name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> and I am </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create objects (instances) of the class</span>
+<span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">person2</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+
+<span class="c1"># Call method on objects</span>
+<span class="n">person1</span><span class="o">.</span><span class="n">say_hello</span><span class="p">()</span>  <span class="c1"># Output: Hello, my name is Alice and I am 30 years old.</span>
+<span class="n">person2</span><span class="o">.</span><span class="n">say_hello</span><span class="p">()</span>  <span class="c1"># Output: Hello, my name is Bob and I am 25 years old.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, my name is Alice and I am 30 years old.
+Hello, my name is Bob and I am 25 years old.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="module">
 <h2>Module<a class="headerlink" href="#module" title="Link to this heading">#</a></h2>
 <p>Modul adalah file yang berisi kode Python, yang dapat mencakup fungsi, kelas, dan variabel. Modul membantu mengatur kode ke dalam beberapa bagian yang mudah dikelola.</p>
@@ -499,7 +532,7 @@ Value of pi: 3.141592653589793
 </section>
 <section id="library">
 <h2>Library<a class="headerlink" href="#library" title="Link to this heading">#</a></h2>
-<p>A library or package is a collection of modules in a directory that contains a special <strong>init</strong>.py file.</p>
+<p>Library atau package adalah suatu kumpulan module dalam satu direktori yang berisi file spesial bernama <strong>init</strong>.py.</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>mypackage/
     <span class="gs">__init__</span>.py
     module1.py
@@ -534,17 +567,7 @@ Value of pi: 3.141592653589793
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/tyo/marinemet-training/1_
-[&#39;1_0_intro.ipynb&#39;, &#39;1_1_1_understanding_python_conda.ipynb&#39;, &#39;1_1_2_jupyterlab.ipynb&#39;, &#39;1_1_3_python_basic_syntax.ipynb&#39;, &#39;1_1_4_python_function_mod_lib.ipynb&#39;, &#39;1_2_python_libraries.ipynb&#39;, &#39;1_3_data_manipulation.ipynb&#39;, &#39;1_4_data_visualization.ipynb&#39;, &#39;Test.csv&#39;, &#39;.ipynb_checkpoints&#39;, &#39;new_directory&#39;]
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileExistsError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">())</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># Create a directory</span>
-<span class="ne">---&gt; </span><span class="mi">10</span> <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s2">&quot;new_directory&quot;</span><span class="p">)</span>
-
-<span class="ne">FileExistsError</span>: [Errno 17] File exists: &#39;new_directory&#39;
+[&#39;1_0_intro.ipynb&#39;, &#39;1_1_1_understanding_python_conda.ipynb&#39;, &#39;1_1_2_jupyterlab.ipynb&#39;, &#39;1_1_3_python_basic_syntax.ipynb&#39;, &#39;1_1_4_python_function_mod_lib.ipynb&#39;, &#39;1_2_python_libraries.ipynb&#39;, &#39;1_3_data_manipulation.ipynb&#39;, &#39;1_4_data_visualization.ipynb&#39;, &#39;Test.csv&#39;, &#39;.ipynb_checkpoints&#39;, &#39;output.txt&#39;]
 </pre></div>
 </div>
 </div>
@@ -617,6 +640,7 @@ Value of pi: 3.141592653589793
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class">Class</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#library">Library</a></li>
 </ul>

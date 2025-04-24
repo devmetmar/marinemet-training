@@ -396,11 +396,31 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-dan-dataframe">Series dan DataFrame</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Math operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-slicing">Indexing &amp; Slicing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-kolom">Mengakses Kolom</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-baris-dengan-label-loc">Mengakses Baris dengan Label (<code class="docutils literal notranslate"><span class="pre">.loc</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-baris-dengan-posisi-iloc">Mengakses Baris dengan Posisi (<code class="docutils literal notranslate"><span class="pre">.iloc</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-sel-tertentu-baris-kolom-sekaligus">Mengakses Sel Tertentu (Baris &amp; Kolom Sekaligus)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-kolom-dan-baris-sekaligus">Slicing Kolom dan Baris Sekaligus</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Math operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi">Agregasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-to-try-numpy-x-pandas">💡 WORTH TO TRY: Numpy x Pandas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-plot-sederhana">Membuat Plot Sederhana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-dari-figure">Anatomy dari Figure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengatur-ukuran-dan-tata-letak-figure">Mengatur Ukuran dan Tata Letak Figure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-beberapa-axes">Menambahkan Beberapa Axes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots-beberapa-grafik-dalam-satu-gambar">Subplots: Beberapa Grafik dalam Satu Gambar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-label-judul-dan-anotasi">Menambahkan Label, Judul, dan Anotasi</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-tips">E. Tips</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memanggil-method-yang-tersimpan-dalam-library">1. Memanggil method yang tersimpan dalam library</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mendapatkan-bantuan">2. Mendapatkan bantuan</a></li>
@@ -667,33 +687,16 @@ document.write(`
 </div>
 </div>
 </div>
-<section id="series-dan-dataframe">
-<h3>Series dan DataFrame<a class="headerlink" href="#series-dan-dataframe" title="Link to this heading">#</a></h3>
+<section id="series">
+<h3>Series<a class="headerlink" href="#series" title="Link to this heading">#</a></h3>
+<p>Series adalah struktur data 1 dimensi seperti array atau list, tetapi memiliki index.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="c1"># Create a Series</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Series</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
-<span class="p">})</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-<span class="c1"># Create a DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]},</span>
-    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;aba&#39;</span><span class="p">,</span><span class="s1">&#39;abi&#39;</span><span class="p">,</span><span class="s1">&#39;iba&#39;</span><span class="p">,</span><span class="s1">&#39;abu&#39;</span><span class="p">,</span> <span class="p">]</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Test.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -705,20 +708,14 @@ document.write(`
 4    6.0
 5    8.0
 dtype: float64
-   A  B
-0  1  5
-1  2  6
-2  3  7
-3  4  8
-     A  B
-aba  1  5
-abi  2  6
-iba  3  7
-abu  4  8
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="dataframe">
+<h3>DataFrame<a class="headerlink" href="#dataframe" title="Link to this heading">#</a></h3>
+<p>DataFrame adalah struktur data 2 dimensi, seperti tabel Excel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Membuat dataframe</span>
@@ -777,6 +774,21 @@ abu  4  8
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         temp  rh      wx
+Jakarta    27  70   clear
+Tokyo      30  75  cloudy
+NewYork    29  80    rain
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -847,6 +859,287 @@ abu  4  8
       <th>max</th>
       <td>30.000000</td>
       <td>80.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="indexing-slicing">
+<h3>Indexing &amp; Slicing<a class="headerlink" href="#indexing-slicing" title="Link to this heading">#</a></h3>
+<section id="mengakses-kolom">
+<h4>Mengakses Kolom<a class="headerlink" href="#mengakses-kolom" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span>     <span class="c1"># atau df.temp</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jakarta    27
+Tokyo      30
+NewYork    29
+Name: temp, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mengakses-baris-dengan-label-loc">
+<h4>Mengakses Baris dengan Label (<code class="docutils literal notranslate"><span class="pre">.loc</span></code>)<a class="headerlink" href="#mengakses-baris-dengan-label-loc" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Tokyo&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temp        30
+rh          75
+wx      cloudy
+Name: Tokyo, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;Tokyo&#39;</span><span class="p">,</span> <span class="s1">&#39;NewYork&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>wx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Tokyo</th>
+      <td>30</td>
+      <td>75</td>
+      <td>cloudy</td>
+    </tr>
+    <tr>
+      <th>NewYork</th>
+      <td>29</td>
+      <td>80</td>
+      <td>rain</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="mengakses-baris-dengan-posisi-iloc">
+<h4>Mengakses Baris dengan Posisi (<code class="docutils literal notranslate"><span class="pre">.iloc</span></code>)<a class="headerlink" href="#mengakses-baris-dengan-posisi-iloc" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mengakses baris posisi ke 0</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>temp       27
+rh         70
+wx      clear
+Name: Jakarta, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mengakses baris posisi ke 1 sampai 2</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>wx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Tokyo</th>
+      <td>30</td>
+      <td>75</td>
+      <td>cloudy</td>
+    </tr>
+    <tr>
+      <th>NewYork</th>
+      <td>29</td>
+      <td>80</td>
+      <td>rain</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="mengakses-sel-tertentu-baris-kolom-sekaligus">
+<h4>Mengakses Sel Tertentu (Baris &amp; Kolom Sekaligus)<a class="headerlink" href="#mengakses-sel-tertentu-baris-kolom-sekaligus" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mengakses nilai temp di baris Jakarta.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Jakarta&#39;</span><span class="p">,</span> <span class="s1">&#39;temp&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(27)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mengakses nilai rh di baris ke-2 (NewYork).</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(80)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="slicing-kolom-dan-baris-sekaligus">
+<h4>Slicing Kolom dan Baris Sekaligus<a class="headerlink" href="#slicing-kolom-dan-baris-sekaligus" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengakses subset baris dari Tokyo sampai NewYork dan kolom dari temp sampai rh.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Tokyo&#39;</span><span class="p">:</span><span class="s1">&#39;NewYork&#39;</span><span class="p">,</span> <span class="s1">&#39;temp&#39;</span><span class="p">:</span><span class="s1">&#39;rh&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>rh</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Tokyo</th>
+      <td>30</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>NewYork</th>
+      <td>29</td>
+      <td>80</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="filtering">
+<h3>Filtering<a class="headerlink" href="#filtering" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menampilkan kota-kota dengan suhu (temp) lebih dari 28°C.</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">28</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>wx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Tokyo</th>
+      <td>30</td>
+      <td>75</td>
+      <td>cloudy</td>
+    </tr>
+    <tr>
+      <th>NewYork</th>
+      <td>29</td>
+      <td>80</td>
+      <td>rain</td>
     </tr>
   </tbody>
 </table>
@@ -973,10 +1266,12 @@ abu  4  8
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="agregasi">
+<h3>Agregasi<a class="headerlink" href="#agregasi" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Agregration, simple stats</span>
-<span class="n">RHmin</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RHmin</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 <span class="n">RHmean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">RHmax</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">RHQ1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
@@ -991,9 +1286,9 @@ abu  4  8
 </div>
 </div>
 </div>
-<blockquote>
-<div><h3 class="rubric" id="worth-to-try">WORTH TO TRY</h3>
-</div></blockquote>
+</section>
+<section id="worth-to-try-numpy-x-pandas">
+<h3>💡 WORTH TO TRY: Numpy x Pandas<a class="headerlink" href="#worth-to-try-numpy-x-pandas" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>Buatlah sebuah dataframe berisi 2 kolom: bilangan ganjil 1 - 100 dan bilangan genap 1 - 100.</p></li>
 <li><p>Buatlah 1 kolom baru berisi hasil perhitungan 2*(elemen ganjil + elemen genap)</p></li>
@@ -1003,6 +1298,13 @@ abu  4  8
 </section>
 <section id="matplotlib">
 <h2>Matplotlib<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> adalah library visualisasi data yang paling umum digunakan di Python. Modul utamanya adalah <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>, yang sering diimpor sebagai <code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+<section id="membuat-plot-sederhana">
+<h3>Membuat Plot Sederhana<a class="headerlink" href="#membuat-plot-sederhana" title="Link to this heading">#</a></h3>
+<p>Gunakan <code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code> untuk membuat figure dan axes, kemudian gunakan <code class="docutils literal notranslate"><span class="pre">.plot()</span></code> untuk menggambar data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mengimport library</span>
@@ -1018,9 +1320,23 @@ abu  4  8
 <img alt="../_images/16cfe7ee508c68b55e7043cf18fb6f8cc3356e3b06a6d84e16dad1d37f12e266.png" src="../_images/16cfe7ee508c68b55e7043cf18fb6f8cc3356e3b06a6d84e16dad1d37f12e266.png" />
 </div>
 </div>
-<hr class="docutils" />
-<p>Bagian-bagian dari plot matplotlib</p>
-<img src="https://matplotlib.org/stable/_images/anatomy.png" alt="matplotlib anatomy" style="width:500px;"/><div class="cell docutils container">
+</section>
+<section id="anatomy-dari-figure">
+<h3>Anatomy dari Figure<a class="headerlink" href="#anatomy-dari-figure" title="Link to this heading">#</a></h3>
+<p>Setiap plot terdiri dari komponen:</p>
+<ul class="simple">
+<li><p>Figure: kanvas utama</p></li>
+<li><p>Axes: area plot</p></li>
+<li><p>Title: judul plot (<code class="docutils literal notranslate"><span class="pre">ax.set_title</span></code>)</p></li>
+<li><p>X &amp; Y label: nama sumbu (<code class="docutils literal notranslate"><span class="pre">ax.set_xlabel</span></code>, <code class="docutils literal notranslate"><span class="pre">ax.set_ylabel</span></code>)</p></li>
+<li><p>Legend, Grid, Spines, Ticks, dll.</p></li>
+</ul>
+<p>📌 Lihat gambar berikut untuk referensi visual:</p>
+<img src="https://matplotlib.org/stable/_images/anatomy.png" alt="matplotlib anatomy" style="width:500px;"/></section>
+<section id="mengatur-ukuran-dan-tata-letak-figure">
+<h3>Mengatur Ukuran dan Tata Letak Figure<a class="headerlink" href="#mengatur-ukuran-dan-tata-letak-figure" title="Link to this heading">#</a></h3>
+<p>Gunakan <code class="docutils literal notranslate"><span class="pre">figsize=(lebar,</span> <span class="pre">tinggi)</span></code> saat membuat figure.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1045,10 +1361,13 @@ abu  4  8
 </div>
 </div>
 </div>
+</section>
+<section id="menambahkan-beberapa-axes">
+<h3>Menambahkan Beberapa Axes<a class="headerlink" href="#menambahkan-beberapa-axes" title="Link to this heading">#</a></h3>
+<p>Gunakan <code class="docutils literal notranslate"><span class="pre">fig.add_axes()</span></code> untuk menambahkan beberapa panel secara bebas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">int</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -1072,11 +1391,14 @@ abu  4  8
 <img alt="../_images/909462a71491243ffe4fc9aa792add9db219f3ddd5ddd38fa31772e7c24380dc.png" src="../_images/909462a71491243ffe4fc9aa792add9db219f3ddd5ddd38fa31772e7c24380dc.png" />
 </div>
 </div>
+</section>
+<section id="subplots-beberapa-grafik-dalam-satu-gambar">
+<h3>Subplots: Beberapa Grafik dalam Satu Gambar<a class="headerlink" href="#subplots-beberapa-grafik-dalam-satu-gambar" title="Link to this heading">#</a></h3>
+<p>Gunakan <code class="docutils literal notranslate"><span class="pre">plt.subplots(nrows,</span> <span class="pre">ncols)</span></code> untuk membuat grid plot otomatis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">axes</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-plt.subplots<span class="o">?</span>
 </pre></div>
 </div>
 </div>
@@ -1086,17 +1408,22 @@ plt.subplots<span class="o">?</span>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/aa1877239e3858f6b4068dc0c57e6b6f9bb61b93f321376b4028bb51fc869bdf.png" src="../_images/aa1877239e3858f6b4068dc0c57e6b6f9bb61b93f321376b4028bb51fc869bdf.png" />
+<img alt="../_images/46893e7aaaf878c09332f839a93fcac8ebb2e48628f7e1354c4e6eaf041c79d2.png" src="../_images/46893e7aaaf878c09332f839a93fcac8ebb2e48628f7e1354c4e6eaf041c79d2.png" />
 </div>
 </div>
+</section>
+<section id="menambahkan-label-judul-dan-anotasi">
+<h3>Menambahkan Label, Judul, dan Anotasi<a class="headerlink" href="#menambahkan-label-judul-dan-anotasi" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -1143,6 +1470,7 @@ plt.subplots<span class="o">?</span>
 </div>
 </div>
 </section>
+</section>
 <section id="e-tips">
 <h2>E. Tips<a class="headerlink" href="#e-tips" title="Link to this heading">#</a></h2>
 <section id="memanggil-method-yang-tersimpan-dalam-library">
@@ -1155,7 +1483,7 @@ plt.subplots<span class="o">?</span>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
     <span class="n">np</span><span class="o">.</span>
        <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
@@ -1485,11 +1813,31 @@ Exceptions to this rule are documented.
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-dan-dataframe">Series dan DataFrame</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Math operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series">Series</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">DataFrame</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-slicing">Indexing &amp; Slicing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-kolom">Mengakses Kolom</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-baris-dengan-label-loc">Mengakses Baris dengan Label (<code class="docutils literal notranslate"><span class="pre">.loc</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-baris-dengan-posisi-iloc">Mengakses Baris dengan Posisi (<code class="docutils literal notranslate"><span class="pre">.iloc</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengakses-sel-tertentu-baris-kolom-sekaligus">Mengakses Sel Tertentu (Baris &amp; Kolom Sekaligus)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-kolom-dan-baris-sekaligus">Slicing Kolom dan Baris Sekaligus</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering">Filtering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Math operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi">Agregasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-to-try-numpy-x-pandas">💡 WORTH TO TRY: Numpy x Pandas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-plot-sederhana">Membuat Plot Sederhana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-dari-figure">Anatomy dari Figure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengatur-ukuran-dan-tata-letak-figure">Mengatur Ukuran dan Tata Letak Figure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-beberapa-axes">Menambahkan Beberapa Axes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots-beberapa-grafik-dalam-satu-gambar">Subplots: Beberapa Grafik dalam Satu Gambar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menambahkan-label-judul-dan-anotasi">Menambahkan Label, Judul, dan Anotasi</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-tips">E. Tips</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memanggil-method-yang-tersimpan-dalam-library">1. Memanggil method yang tersimpan dalam library</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mendapatkan-bantuan">2. Mendapatkan bantuan</a></li>
