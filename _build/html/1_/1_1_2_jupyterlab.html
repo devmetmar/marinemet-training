@@ -385,10 +385,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hub-training-pusmar-org">hub-training.pusmar.org</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-hub-training-pusmar-org">Platform hub-training.pusmar.org</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#halaman-login">Halaman login</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#halaman-menu-awal">Halaman Menu Awal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-file">Jupyter notebook file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-s-and-don-ts">✅Do’s and Don’ts⚠️</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dos">Do’s ✅</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sebelum-memulai-hands-on">1. Sebelum memulai hands-on</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-terminal-dan-tabs">2. Kernel, terminal, dan tabs.</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dont-s">Dont’s ⚠️</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -418,16 +426,53 @@ document.write(`
 </ul>
 <div align="center"><img src="https://raw.githubusercontent.com/devmetmar/marinemet-training/refs/heads/main/img/1_jupyterlab.png" alt="jupyterlab" width="800px"/><br>***</div>
 <hr class="docutils" />
-<section id="hub-training-pusmar-org">
-<h2><a class="reference external" href="https://hub-training.pusmar.org/">hub-training.pusmar.org</a><a class="headerlink" href="#hub-training-pusmar-org" title="Link to this heading">#</a></h2>
+<section id="platform-hub-training-pusmar-org">
+<h2>Platform <a class="reference external" href="https://hub-training.pusmar.org/">hub-training.pusmar.org</a><a class="headerlink" href="#platform-hub-training-pusmar-org" title="Link to this heading">#</a></h2>
+<p>Platform <a class="reference external" href="http://hub-training.pusmar.org">hub-training.pusmar.org</a> dibangun untuk memenuhi kebutuhan komputasi agar peserta secara merata dapat mengikuti pelatihan dengan lancar. Platform ini dibangun diatas kontainer (docker) menggunakan ekstensi jupyterhub untuk dapat menjalankan service jupyterlab multi user. Pada level user, tampilan yang tersedia merupakan tampilan jupyterlab secara umum.</p>
 <section id="halaman-login">
 <h3>Halaman login<a class="headerlink" href="#halaman-login" title="Link to this heading">#</a></h3>
+<p>List username dan password dapat diakses melalui pranala berikut <a class="reference external" href="https://link.bmkg.go.id/userpass-hubtraining">link.bmkg.go.id/userpass-hubtraining</a>.</p>
 <div align="center"><img src="../img/1_hub_login.png" alt="jupyterlab" width="800px"/></div></section>
 <section id="halaman-menu-awal">
 <h3>Halaman Menu Awal<a class="headerlink" href="#halaman-menu-awal" title="Link to this heading">#</a></h3>
+<p>Tampilan awal untuk pertama kali login tertera pada gambar dibawah. Dalam praktik ini, kita akan menggunakan file Notebook untuk melakukan pengolahan data. Source code yang akan digunakan dalam hands-on terdapat didalam folder <code class="docutils literal notranslate"><span class="pre">templates</span></code>.</p>
 <div align="center"><img src="../img/1_hub_mainmenu.png" alt="jupyterlab" width="800px"/></div></section>
-<section id="jupyter-notebook-file">
-<h3>Jupyter notebook file<a class="headerlink" href="#jupyter-notebook-file" title="Link to this heading">#</a></h3>
+<section id="do-s-and-don-ts">
+<h3>✅Do’s and Don’ts⚠️<a class="headerlink" href="#do-s-and-don-ts" title="Link to this heading">#</a></h3>
+<section id="dos">
+<h4>Do’s ✅<a class="headerlink" href="#dos" title="Link to this heading">#</a></h4>
+<section id="sebelum-memulai-hands-on">
+<h5>1. Sebelum memulai hands-on<a class="headerlink" href="#sebelum-memulai-hands-on" title="Link to this heading">#</a></h5>
+<p>Untuk memulai pelatihan, langkah pertama adalah untuk menyalin folder templates berikut dengan files yang terdapat didalamnya.
+Langkah:</p>
+<ol class="arabic">
+<li><p>Buka Terminal pada tab Launcher</p></li>
+<li><p>Pastikan berada didalam direktori home kemudian salin folder templates ke templates_edit menggunakan command <code class="docutils literal notranslate"><span class="pre">cp</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
+cp<span class="w"> </span>--recursive<span class="w"> </span>templates<span class="w"> </span>templates_edit
+</pre></div>
+</div>
+ <div align="left"><img src="../img/1_cp_folder.png" alt="jupyterlab" width="400px"/></div>
+</li>
+<li><p>Selesai, peserta dapat mengikuti hands-on menggunakan file yang terdapat didalam folder templates_edit</p>
+  <div align="left"><img src="../img/1_templates_edit.png" alt="jupyterlab" width="200px"/></div>
+</li>
+<li><p>Hanya lakukan ini sekali!</p></li>
+</ol>
+</section>
+<section id="kernel-terminal-dan-tabs">
+<h5>2. Kernel, terminal, dan tabs.<a class="headerlink" href="#kernel-terminal-dan-tabs" title="Link to this heading">#</a></h5>
+<p>Selalu mematikan kernel, terminal dan menutup tabs sebelum meninggalkan <a class="reference external" href="http://hub-training.pusmar.org">hub-training.pusmar.org</a>. Close All dan Shut Down All pada menu Running kernel dan terminal di sebelah kiri.</p>
+<div align="left"><img src="../img/1_running_kernel.png" alt="jupyterlab" width="200px"/></div></section>
+</section>
+<section id="dont-s">
+<h4>Dont’s ⚠️<a class="headerlink" href="#dont-s" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>Mengedit file didalam folder templates, selalu gunakan file yang tersimpan di dalam folder templates_edit selama pelatihan berlangsung.</p></li>
+<li><p>Melakukan pengolahan data yang sangat besar sehingga mengganggu performa server.</p></li>
+<li><p>Meninggalkan <a class="reference external" href="http://hub-training.pusmar.org">hub-training.pusmar.org</a> dengan keadaan masih banyak tab terbuka dan kernel masih aktif.</p></li>
+</ol>
+</section>
 </section>
 </section>
 </section>
@@ -496,10 +541,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hub-training-pusmar-org">hub-training.pusmar.org</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platform-hub-training-pusmar-org">Platform hub-training.pusmar.org</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#halaman-login">Halaman login</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#halaman-menu-awal">Halaman Menu Awal</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-file">Jupyter notebook file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-s-and-don-ts">✅Do’s and Don’ts⚠️</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dos">Do’s ✅</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#sebelum-memulai-hands-on">1. Sebelum memulai hands-on</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-terminal-dan-tabs">2. Kernel, terminal, dan tabs.</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dont-s">Dont’s ⚠️</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
