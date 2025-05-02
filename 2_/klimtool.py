@@ -499,6 +499,7 @@ class klimtool(plotter):
         elif pd.to_datetime(tend) > pd.to_datetime(dset.time.data[-1]):
             tend = pd.to_datetime(dset.time.data[-1] )      
         dset = dset.sel(time=slice(tstart, tend), lon=slice(latlon[0], latlon[1]), lat=slice(latlon[2], latlon[3]))[[var for var in list(dset) if 'tau' not in var]]
+        dset = dset.chunk({'time':24, 'lon':len(dset.lon.data), 'lat':len(dset.lat.data)})
         return dset
     
     def open_inawaves(self, tstart, tend, latlon):
@@ -508,6 +509,7 @@ class klimtool(plotter):
         elif pd.to_datetime(tend) > pd.to_datetime(dset.time.data[-1]):
             tend = pd.to_datetime(dset.time.data[-1])
         dset = dset.sel(time=slice(tstart, tend), lon=slice(latlon[0], latlon[1]), lat=slice(latlon[2], latlon[3]))[[var for var in list(dset) if 'tau' not in var]]
+        dset = dset.chunk({'time':240, 'lon':len(dset.lon.data), 'lat':len(dset.lat.data)})
         return dset
     
     def open_inaflows(self, tstart, tend, latlon):
@@ -517,6 +519,7 @@ class klimtool(plotter):
         elif pd.to_datetime(tend) > pd.to_datetime(dset.time.data[-1]):
             tend = pd.to_datetime(dset.time.data[-1])
         dset = dset.sel(time=slice(tstart, tend), lon=slice(latlon[0], latlon[1]), lat=slice(latlon[2], latlon[3]))[[var for var in list(dset) if 'tau' not in var]]
+        dset = dset.chunk({'time':240, 'lon':len(dset.lon.data), 'lat':len(dset.lat.data)})
         return dset
 
 class mapCollection:
