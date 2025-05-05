@@ -393,7 +393,7 @@ class plotter:
         model:str,
         var:str,
         ds:xr.Dataset,
-        bins:list,
+        dist:list,
         map_title: str,
         file_name:str,
         ax=None
@@ -436,8 +436,8 @@ class plotter:
                 mag = ds[param.var1]
                 uvcomp = (270 - ds[param.var2])%360
             
-        rosedir = uvcomp
-        rosemag = mag
+        rosedir = np.asarray(uvcomp).flatten()
+        rosemag = np.asarray(mag).flatten()
 
         if ax is None:
             fig = plt.figure(figsize=(8, 8))
@@ -455,8 +455,8 @@ class plotter:
             bins=lvl
         )
         # ax_ws.set_rticks(bins)
-        ax_ws.set_rmax(max(bins))
-        ax_ws.set_rgrids(bins, bins)
+        ax_ws.set_rmax(max(dist))
+        ax_ws.set_rgrids(dist, dist)
         ax_ws.set_title(f"{map_title}", fontsize=16)
         if ax is None:
             ax_ws.legend(
