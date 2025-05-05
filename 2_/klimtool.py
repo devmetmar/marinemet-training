@@ -1234,6 +1234,7 @@ class wilproCollection:
                 'maluku_utara' : self.maluku_utara,
                 'ntb' : self.ntb,
                 'ntt' : self.ntt,
+                'papua': self.papua,
                 'papua_barat': self.papua_barat,
                 'papua_barat_daya': self.papua_barat_daya,
                 'papua_selatan': self.papua_selatan,
