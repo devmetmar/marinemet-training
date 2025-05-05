@@ -190,6 +190,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Climatological product</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5_/5_0_intro.html">Verifikasi parameter metocean</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5_/001_Akses_Data.html">Pendahuluan</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../5_/002_Pengolahan_Data.html">Memuat Data</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../5_/003_Verifikasi.html">Load Data</a></li>
+
+
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -415,7 +426,7 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/aws_priok_202109.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_cv</span><span class="p">(</span><span class="s1">&#39;../data/aws_priok_202109.csv&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -423,160 +434,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_cv</span><span class="p">(</span><span class="s1">&#39;../data/aws_priok_202109.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;1D&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>windspeed</th>
-      <th>winddir</th>
-      <th>temp</th>
-      <th>rh</th>
-      <th>pressure</th>
-      <th>rain</th>
-      <th>solrad</th>
-      <th>netrad</th>
-      <th>watertemp</th>
-      <th>waterlevel</th>
-      <th>ta_min</th>
-      <th>ta_max</th>
-      <th>pancilevel</th>
-      <th>pancitemp</th>
-      <th>Year</th>
-      <th>Month</th>
-    </tr>
-    <tr>
-      <th>time</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2021-09-01</th>
-      <td>3.066533</td>
-      <td>80.842317</td>
-      <td>29.460338</td>
-      <td>72.573371</td>
-      <td>1010.460740</td>
-      <td>0.0</td>
-      <td>221.018906</td>
-      <td>0.0</td>
-      <td>30.752212</td>
-      <td>1.724000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2021.0</td>
-      <td>9.0</td>
-    </tr>
-    <tr>
-      <th>2021-09-02</th>
-      <td>2.495837</td>
-      <td>162.424195</td>
-      <td>29.064415</td>
-      <td>70.542498</td>
-      <td>1010.200314</td>
-      <td>0.0</td>
-      <td>185.393087</td>
-      <td>0.0</td>
-      <td>30.808327</td>
-      <td>1.724000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2021.0</td>
-      <td>9.0</td>
-    </tr>
-    <tr>
-      <th>2021-09-03</th>
-      <td>2.539955</td>
-      <td>192.235785</td>
-      <td>28.904549</td>
-      <td>70.765353</td>
-      <td>1009.501744</td>
-      <td>0.0</td>
-      <td>194.061107</td>
-      <td>0.0</td>
-      <td>30.836240</td>
-      <td>1.793826</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2021.0</td>
-      <td>9.0</td>
-    </tr>
-    <tr>
-      <th>2021-09-04</th>
-      <td>2.080130</td>
-      <td>242.106678</td>
-      <td>29.169870</td>
-      <td>69.039739</td>
-      <td>1009.934935</td>
-      <td>0.0</td>
-      <td>216.435423</td>
-      <td>0.0</td>
-      <td>31.168078</td>
-      <td>1.822672</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2021.0</td>
-      <td>9.0</td>
-    </tr>
-    <tr>
-      <th>2021-09-05</th>
-      <td>2.772367</td>
-      <td>113.749117</td>
-      <td>29.269753</td>
-      <td>73.956325</td>
-      <td>1010.106784</td>
-      <td>0.0</td>
-      <td>192.598445</td>
-      <td>0.0</td>
-      <td>31.169611</td>
-      <td>1.853479</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>2021.0</td>
-      <td>9.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="ne">AttributeError</span>: module &#39;pandas&#39; has no attribute &#39;read_cv&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -811,7 +681,7 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;watertemp&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;watertemp&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;airtemp&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xtiks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Temp (degC)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Plot Watertemp dan Airtemp di AWS TJ Priok&quot;</span><span class="p">)</span>
@@ -820,7 +690,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f27af6534d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f2538c67ed0&gt;
 </pre></div>
 </div>
 <img alt="../_images/3f66ee98a19e5520a4b4eaef5aef713637f131234e4f03aee4c44b4dca08a74b.png" src="../_images/3f66ee98a19e5520a4b4eaef5aef713637f131234e4f03aee4c44b4dca08a74b.png" />
@@ -845,17 +715,6 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">12</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Plot Watertemp dan Airtemp di AWS TJ Priok&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">0.05</span><span class="p">))</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;fig&#39; is not defined
-</pre></div>
-</div>
 <img alt="../_images/361f770228119b1bb79ea224e0061fcfb13eec68ddf9741b832bac7926a24b15.png" src="../_images/361f770228119b1bb79ea224e0061fcfb13eec68ddf9741b832bac7926a24b15.png" />
 </div>
 </div>
@@ -868,7 +727,7 @@ document.write(`
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temp (degC)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">lower</span> <span class="n">right</span><span class="s1">&#39;)</span>
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
 <span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;relhum&#39;</span><span class="p">)</span>
@@ -903,7 +762,7 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
 
 <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span><span class="n">p</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]),</span><span class="s2">&quot;r--&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -942,7 +801,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7fa4c68c3230&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data from &#39;https://rabernat.github.io/research_computing/signif.txt.tsv.zip&#39; to file &#39;/home/tyo/.cache/pooch/031a30a92d6a3a2680d86514a24e9321-signif.txt.tsv.zip&#39;.
+Unzipping contents of &#39;/home/tyo/.cache/pooch/031a30a92d6a3a2680d86514a24e9321-signif.txt.tsv.zip&#39; to &#39;/home/tyo/.cache/pooch/031a30a92d6a3a2680d86514a24e9321-signif.txt.tsv.zip.unzip&#39;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f122aceb4d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/30781767e62901d311d8f72981dc3aa1e9fe9b4a561af85d22da0158d0aebc5d.png" src="../_images/30781767e62901d311d8f72981dc3aa1e9fe9b4a561af85d22da0158d0aebc5d.png" />
@@ -956,7 +819,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">counts</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span><span class="mi">32</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">bin_start</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">bins</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">bin_start</span> <span class="n">n</span> <span class="nb">zip</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">bins</span><span class="p">):</span>
     <span class="n">bin_center</span> <span class="o">=</span> <span class="n">bin_start</span> <span class="o">+</span> <span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bins</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">bin_center</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">count</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
 
@@ -981,7 +844,7 @@ document.write(`
 
 <span class="c1"># =======================================================================================</span>
 <span class="c1"># Top-left: Time series with dual y-axis</span>
-<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;airtemp&#39;</span><span class="p">)</span>
+<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;airtemp&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temp (degC)&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
@@ -1003,7 +866,7 @@ document.write(`
 <span class="n">width</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;watertemp&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;watertemp&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;airtemp&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;edge&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Time&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Temp (degC)&quot;</span><span class="p">)</span>
@@ -1032,7 +895,7 @@ document.write(`
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Temp (degC)&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Histogram Plot Airtemp di AWS TJ Priok&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">settitle</span><span class="p">(</span><span class="s2">&quot;Histogram Plot Airtemp di AWS TJ Priok&quot;</span><span class="p">)</span>
 
 <span class="c1"># =======================================================================================</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Visualisasi Data AWS TJ Priok&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>

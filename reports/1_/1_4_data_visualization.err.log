@@ -28,29 +28,26 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# BAR PLOT
+import pandas as pd
+import matplotlib.pyplot as plt
+import datetime
+import numpy as np
 
-width = 0.2
-plt.figure(figsize=(10,5), dpi=300)
-plt.bar(df.index-datetime.timedelta(hours=5), df['watertemp'], color='b', label='watertemp', align='edge', width=0.4)
-plt.bar(df.index+datetime.timedelta(hours=5), df['temp'], color='r', label='airtemp', align='edge', width=0.4)
-plt.xticks(rotation=40)
-plt.xlabel("Time")
-plt.ylabel("Temp (degC)")
-plt.title("Plot Watertemp dan Airtemp di AWS TJ Priok")
-plt.legend(loc='lower right', bbox_to_anchor=(1.2,0.05))
-fig.tight_layout()
-plt.show()
+df = pd.read_cv('../data/aws_priok_202109.csv')
+df['time'] = pd.to_datetime(df['time'])
+df = df.resample('1D', on='time').mean()
+df.head()
 ------------------
 
 
 [31m---------------------------------------------------------------------------[39m
-[31mNameError[39m                                 Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 12[39m
-[32m     10[39m plt.title([33m"[39m[33mPlot Watertemp dan Airtemp di AWS TJ Priok[39m[33m"[39m)
-[32m     11[39m plt.legend(loc=[33m'[39m[33mlower right[39m[33m'[39m, bbox_to_anchor=([32m1.2[39m,[32m0.05[39m))
-[32m---> [39m[32m12[39m [43mfig[49m.tight_layout()
-[32m     13[39m plt.show()
+[31mAttributeError[39m                            Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 6[39m
+[32m      3[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mdatetime[39;00m
+[32m      4[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mnp[39;00m
+[32m----> [39m[32m6[39m df = [43mpd[49m[43m.[49m[43mread_cv[49m([33m'[39m[33m../data/aws_priok_202109.csv[39m[33m'[39m)
+[32m      7[39m df[[33m'[39m[33mtime[39m[33m'[39m] = pd.to_datetime(df[[33m'[39m[33mtime[39m[33m'[39m])
+[32m      8[39m df = df.resample([33m'[39m[33m1D[39m[33m'[39m, on=[33m'[39m[33mtime[39m[33m'[39m).mean()
 
-[31mNameError[39m: name 'fig' is not defined
+[31mAttributeError[39m: module 'pandas' has no attribute 'read_cv'
 

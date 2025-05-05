@@ -190,6 +190,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Climatological product</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../5_/5_0_intro.html">Verifikasi parameter metocean</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../5_/001_Akses_Data.html">Pendahuluan</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../5_/002_Pengolahan_Data.html">Memuat Data</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../5_/003_Verifikasi.html">Load Data</a></li>
+
+
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -1019,129 +1030,20 @@ dtype: object
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
 
-<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevellag1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;to_remove&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">remove_stagnan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;waterlevellag1&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevellag1&#39;</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;to_remove&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">remove_stanan</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;waterlevellag1&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">df_filtered</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_40135/1703409140.py:8: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  df_filtered[&#39;waterlevellag1&#39;] = df_filtered[&#39;waterlevel&#39;].shift(periods=1)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+    <span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevellag1&#39;</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="p">[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+               <span class="o">^</span>
+<span class="ne">SyntaxError</span>: &#39;[&#39; was never closed
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_40135/1703409140.py:9: SettingWithCopyWarning: 
-A value is trying to be set on a copy of a slice from a DataFrame.
-Try using .loc[row_indexer,col_indexer] = value instead
-
-See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  df_filtered[&#39;to_remove&#39;] = df_filtered.apply(lambda row: remove_stagnan(row[&#39;waterlevel&#39;], row[&#39;waterlevellag1&#39;]), axis=1)
-</pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>waterlevel</th>
-      <th>waterlevellag1</th>
-      <th>to_remove</th>
-    </tr>
-    <tr>
-      <th>time</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2021-08-01 03:00:00</th>
-      <td>1.723</td>
-      <td>NaN</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2021-08-01 03:01:00</th>
-      <td>1.722</td>
-      <td>1.723</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2021-08-01 03:02:00</th>
-      <td>1.724</td>
-      <td>1.722</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2021-08-01 03:03:00</th>
-      <td>1.726</td>
-      <td>1.724</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2021-08-01 03:04:00</th>
-      <td>1.725</td>
-      <td>1.726</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2021-09-30 23:54:00</th>
-      <td>1.795</td>
-      <td>1.795</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2021-09-30 23:55:00</th>
-      <td>1.795</td>
-      <td>1.795</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2021-09-30 23:56:00</th>
-      <td>1.795</td>
-      <td>1.795</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2021-09-30 23:57:00</th>
-      <td>1.795</td>
-      <td>1.795</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2021-09-30 23:58:00</th>
-      <td>1.795</td>
-      <td>1.795</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-<p>74246 rows × 3 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1200,7 +1102,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># QUICK PLOT</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BEFORE&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BEFORE&quot;</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_filtered</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s1">&#39;waterlevel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1262,7 +1164,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f0b708dc6e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fd1cea3e7b0&gt;
 </pre></div>
 </div>
 </div>
@@ -1306,7 +1208,7 @@ Jam ke 23 &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_1jam_mean</span> <span class="o">=</span> <span class="n">df_1jam_grouped</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_1jam_mean</span> <span class="o">=</span> <span class="n">df_1jam_grouped</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_1jam_mean</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_1jam_mean</span><span class="o">.</span><span class="n">plot</span><span class="p">())</span>
 </pre></div>
