@@ -18,3 +18,8 @@ chapters:
   - file: 2_/2_1_data_processing_xarray
   - file: 2_/2_2_geospatial_data_visualization
   - file: 2_/2_3_climatology_product
+- file: 3_/000_Intro
+  sections:
+  - file: 3_/001_Akses_Data
+  - file: 3_/002_Pengolahan_Data
+  - file: 3_/003_Verifikasi

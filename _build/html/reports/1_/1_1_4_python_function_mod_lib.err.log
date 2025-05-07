@@ -43,12 +43,12 @@ os.mkdir("new_directory")
 
 ----- stdout -----
 /home/tyo/marinemet-training/1_
-['1_0_intro.ipynb', '1_1_1_understanding_python_conda.ipynb', '1_1_2_jupyterlab.ipynb', '1_1_3_python_basic_syntax.ipynb', '1_1_4_python_function_mod_lib.ipynb', '1_2_python_libraries.ipynb', '1_3_data_manipulation.ipynb', '1_4_data_visualization.ipynb', 'Test.csv', '.ipynb_checkpoints', 'new_directory']
+['1_0_intro.ipynb', '1_1_1_understanding_python_conda.ipynb', '1_1_2_jupyterlab.ipynb', '1_1_3_python_basic_syntax.ipynb', '1_1_4_python_function_mod_lib.ipynb', '1_2_python_libraries.ipynb', '1_3_data_manipulation.ipynb', 'Test.csv', '.ipynb_checkpoints', 'output.txt', 'new_directory', '1_4_data_visualization.ipynb']
 ------------------
 
 [31m---------------------------------------------------------------------------[39m
 [31mFileExistsError[39m                           Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 10[39m
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 10[39m
 [32m      7[39m [38;5;28mprint[39m(os.listdir())
 [32m      9[39m [38;5;66;03m# Create a directory[39;00m
 [32m---> [39m[32m10[39m [43mos[49m[43m.[49m[43mmkdir[49m[43m([49m[33;43m"[39;49m[33;43mnew_directory[39;49m[33;43m"[39;49m[43m)[49m
