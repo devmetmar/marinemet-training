@@ -1,0 +1,2195 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pengolahan data MAWS &#8212; Pelatihan Pengolahan Data Meteorologi Maritim</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4_/01_Akses_data_MAWS';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="About the authors" href="../author.html" />
+    <link rel="prev" title="Pengolahan data MAWS" href="00_Intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Pelatihan Pengolahan Data Meteorologi Maritim</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction to Python for Metocean Data Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_/1_0_intro.html">Introduction to Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_/1_1_1_understanding_python_conda.html">Understanding python and conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_/1_1_2_jupyterlab.html">Jupyterlab as an IDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_/1_1_3_python_basic_syntax.html">Python Basic Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_/1_1_4_python_function_mod_lib.html">Python function, module, and library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_/1_2_python_libraries.html">Python scientific libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_/1_3_data_manipulation.html">Tabular data manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_/1_4_data_visualization.html">Data visualization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_/2_0_intro.html">Multidimensional data processing and visualization</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_1_data_processing_xarray.html">Multidimensional data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_2_geospatial_data_visualization.html">Spatial data visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_/2_3_climatology_product.html">Climatological product</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_/000_Intro.html">Verifikasi parameter metocean</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_/001_Akses_Data.html">Pendahuluan</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../3_/002_Pengolahan_Data.html">Pengolahan Data</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../3_/003_Verifikasi.html">Verifikasi</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="00_Intro.html">Pengolahan data MAWS</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pengolahan data MAWS</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../author.html">About the authors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F4_/01_Akses_data_MAWS.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/4_/01_Akses_data_MAWS.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pengolahan data MAWS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pengolahan data MAWS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#impor-pustaka-python-yang-dibutuhkan">Impor pustaka python yang dibutuhkan <a id="impor-modul"></a></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data">Lokasi Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data-diklat">Lokasi Data Diklat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-meta-file">Lokasi Meta file</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-aws-existing">Metadata AWS Existing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buka-metadata-1">Buka metadata 1</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-aws-mms-1">Metadata AWS MMS 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buka-metadata-2">Buka metadata 2</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-lokasi-maws">Plot lokasi MAWS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-lokasi-maws-berdasarkan-metadata">Load lokasi MAWS berdasarkan metadata</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-maws">Plot MAWS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-1">!!! Pertanyaan 1 !!!</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan">Catatan !!!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data">Akses Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-akses-data">Contoh akses data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data-secara-manual">Akses data secara manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-lokasi-path-file">Definisikan lokasi/path file</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-menggunakan-pustaka-pandas">Load data menggunakan pustaka Pandas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-2">!!! Pertanyaan 2 !!!</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-memuat-data-selama-satu-bulan">Bagaimana memuat data selama satu bulan?</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-daftar-path-file-yang-terdapat-pada-satu-direktori-bulan-tertentu">Membuat daftar path file yang terdapat pada satu direktori bulan tertentu</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dan-memuat-data">Membaca dan memuat data</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-menyeleksi-data-dari-resolusi-tiap-menit-menjadi-data-setiap-10-menit">Bagaimana menyeleksi data dari resolusi tiap menit menjadi data setiap 10 menit?</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penting">!!!!! PENTING !!!!!</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-3">!!! Pertanyaan 3 !!!</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data-menggunakan-modul-yang-telah-disiapkan">Akses data menggunakan modul yang telah disiapkan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-submodul-dengan-direktori-data">Inisialisasi submodul dengan direktori data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muat-data-aws">Muat data AWS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muat-dan-simpan-ke-dalam-file-csv">Muat dan simpan ke dalam file csv</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-4">!!! Pertanyaan 4 !!!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pengolahan-data-maws">
+<h1>Pengolahan data MAWS<a class="headerlink" href="#pengolahan-data-maws" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="impor-pustaka-python-yang-dibutuhkan">
+<h1>Impor pustaka python yang dibutuhkan <a id="impor-modul"></a><a class="headerlink" href="#impor-pustaka-python-yang-dibutuhkan" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diklatmar</span><span class="w"> </span><span class="kn">import</span> <span class="n">loader</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="lokasi-data">
+<h1>Lokasi Data<a class="headerlink" href="#lokasi-data" title="Link to this heading">#</a></h1>
+<section id="lokasi-data-diklat">
+<h2>Lokasi Data Diklat<a class="headerlink" href="#lokasi-data-diklat" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dir_data</span> <span class="o">=</span> <span class="s2">&quot;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lokasi-meta-file">
+<h2>Lokasi Meta file<a class="headerlink" href="#lokasi-meta-file" title="Link to this heading">#</a></h2>
+<section id="metadata-aws-existing">
+<h3>Metadata AWS Existing<a class="headerlink" href="#metadata-aws-existing" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fnme_meta1</span> <span class="o">=</span> <span class="s2">&quot;metadata_existing.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="buka-metadata-1">
+<h4>Buka metadata 1<a class="headerlink" href="#buka-metadata-1" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">loader</span><span class="p">(</span><span class="n">dir_data</span><span class="p">)</span>
+<span class="n">df_meta1</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">meta</span><span class="p">(</span><span class="n">fnme_meta1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-07 14:04:41 :	I	Loaded metadata from metadata_existing.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menampilkan tabel metadata</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_meta1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                      station   latitude   longitude
+id                                                                  
+1000000009           AWS_Maritim__Ujung_Kulon  -6.815362  105.482341
+3000000001                 AWS_Maritim_Bungus  -1.029570  100.395900
+3000000002                AWS_Maritim_Kendari  -3.978255  122.597562
+3000000004              AWS_Maritim_Bakauheni  -5.869730  105.755494
+3000000006          AWS_Maritim_Tanjung_Perak  -7.196366  112.741795
+3000000007    AWS_Maritim_Banyuwangi_Ketapang  -8.142775  114.401037
+3000000008                AWS_Maritim_Maumere  -8.621250  122.219722
+3000000009          AWS_Maritim_Tanjung_Priok  -6.121360  106.838106
+3000000010                 AWS_Maritim_Bitung   1.458697  125.217993
+3000000011              AWS_Maritim_Pontianak  -0.020613  109.337349
+3000000012          AWS_Maritim_Lembar_Lombok  -8.730206  116.073726
+3000000014               AWS_Maritim_Semarang  -6.943510  110.431310
+3000000015                AWS_Maritim_Paotere  -5.109306  119.419730
+3000000016        AWS_Maritim_Dermaga_7_Merak  -5.922931  105.991811
+3000000017                AWS_Maritim_Cilacap  -7.724845  109.023000
+3000000018             AWS_Maritim_Kep_Seribu  -5.656575  106.574023
+3000000020       AWS_Maritim_Kota_Baru_Kalsel  -3.271340  116.180070
+3000000022                AWS_Maritim_Belinyu  -1.629848  105.733411
+3000000023  AWS_Maritim_Tanjung_Balai_Karimun   0.988130  103.435320
+3000000024               AWS_Maritim_Pemenang  -8.393633  116.099609
+3000000025                AWS_Maritim_Bau_Bau  -5.457129  122.615760
+3000000026     AWS_Maritim_Tigaras_Danau_Toba   2.798000   98.789083
+3000000027               AWS_Maritim_Ciwandan  -6.014820  105.951580
+3000000028                  AWS_Maritim_Ambon  -3.696242  128.173943
+3000000029         AWS_Maritim_Dok_IIJayapura  -2.535071  140.718554
+3000000030                  AWS_Maritim_Batam   1.164722  103.996670
+3000000031            AWS_Maritim_Probolinggo  -7.726563  113.225716
+3000000032                AWS_Maritim_Nunukan   4.145324  117.665538
+3000000033             AWS_Maritim_Balikpapan  -1.162981  116.780232
+3000000034                  AWS_Maritim_Benoa  -8.747114  115.208687
+3000000035                 AWS_Maritim_Sorong  -0.888814  131.266570
+3000000036                 AWS_Maritim_Kupang -10.188707  123.527018
+3000000037                AWS_Maritim_Ternate   0.813629  127.388821
+3000000038                 AWS_Maritim_Sabang   5.889736   95.319380
+3000000046              AWS_Maritim_Gilimanuk  -8.161093  114.437265
+3000000047              AWS_Maritim_Padangbai  -8.533838  115.509487
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="metadata-aws-mms-1">
+<h3>Metadata AWS MMS 1<a class="headerlink" href="#metadata-aws-mms-1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fnme_meta2</span> <span class="o">=</span> <span class="s2">&quot;metadata_mms1.csv&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="buka-metadata-2">
+<h4>Buka metadata 2<a class="headerlink" href="#buka-metadata-2" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_meta2</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">meta</span><span class="p">(</span><span class="n">fnme_meta2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-07 14:04:41 :	I	Loaded metadata from metadata_mms1.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menampilkan tabel metadata</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_meta2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                station   latitude   longitude
+id                                                            
+4000000001            AWS_Maritim_BAJOE  -4.543464  120.405456
+4000000002            AWS_Maritim_JAMBI  -0.803240  103.483000
+4000000027    AWS_Maritim_KUALA_TANJUNG   3.380154   99.469821
+4000000005      AWS_Maritim_LABUAN_BAJO  -8.460550  119.919900
+4000000007           AWS_Maritim_MALANG  -8.434172  112.683796
+4000000034           AWS_Maritim_NATUNA   3.892710  108.383400
+4000000010        AWS_Maritim_PALEMBANG  -2.217510  104.488350
+4000000011             AWS_Maritim_PALU  -0.711692  119.857228
+4000000012    AWS_Maritim_PANGKALAN_BUN  -2.739063  111.728834
+4000000013          AWS_Maritim_PANJANG  -5.469986  105.319980
+4000000016           AWS_Maritim_SADENG  -8.191283  110.799452
+4000000017        AWS_Maritim_SAMARINDA  -0.570467  117.206440
+4000000020       AWS_Maritim_ULEE_LHEUE   5.566502   95.294757
+4000000021           AWS_Maritim_MANADO   1.497902  124.839557
+4000000023           AWS_Maritim_TIDORE   0.680083  127.455880
+4000000024          AWS_Maritim_MERAUKE  -8.478508  140.380499
+4000000025            AWS_Maritim_TEGAL  -6.848089  109.127352
+4000000026          AWS_Maritim_BELAWAN   3.785223   98.700572
+4000000028             AWS_Maritim_TUAL  -5.616902  132.741513
+4000000029      AWS_Maritim_KARIMUNJAWA  -5.878397  110.429594
+4000000031  AWS_Maritim_TANGKIANG_LUWUK  -1.210097  122.629740
+4000000033    AWS_Maritim_BELANG_BELANG  -2.473550  119.131067
+4000000036       AWS_Maritim_GARONGKONG  -4.366579  119.612001
+4000000037             AWS_Maritim_ROTE -10.722342  123.043262
+4000000038         AWS_Maritim_TOROBULU  -4.445947  122.456296
+4000000039             AWS_Maritim_BIAK  -1.185679  136.076831
+4000000040             AWS_Maritim_BIRA  -5.606003  120.466757
+4000000041          AWS_Maritim_PACIRAN  -6.865680  112.367521
+4000000042         AWS_Maritim_SAUMLAKI  -7.981906  131.290586
+4000000043  AWS_Maritim_KAYANGAN_LOMBOK  -8.485700  116.673984
+4000000044            AWS_Maritim_AMBON  -3.790782  128.101176
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="plot-lokasi-maws">
+<h3>Plot lokasi MAWS<a class="headerlink" href="#plot-lokasi-maws" title="Link to this heading">#</a></h3>
+<section id="load-lokasi-maws-berdasarkan-metadata">
+<h4>Load lokasi MAWS berdasarkan metadata<a class="headerlink" href="#load-lokasi-maws-berdasarkan-metadata" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lons1</span> <span class="o">=</span> <span class="n">df_meta1</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">lats1</span> <span class="o">=</span> <span class="n">df_meta1</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">lons2</span> <span class="o">=</span> <span class="n">df_meta2</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">lats2</span> <span class="o">=</span> <span class="n">df_meta2</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">locs1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">lons1</span><span class="p">,</span> <span class="n">lats1</span><span class="p">))</span>
+<span class="n">locs2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">lons2</span><span class="p">,</span> <span class="n">lats2</span><span class="p">))</span>
+
+<span class="n">imdir</span> <span class="o">=</span> <span class="s2">&quot;./imgs&quot;</span>
+<span class="n">exts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">95</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">data_lons</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">120</span><span class="p">]</span>
+<span class="n">data_lats</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">data_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">data_lons</span><span class="p">,</span> <span class="n">data_lats</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-maws">
+<h4>Plot MAWS<a class="headerlink" href="#plot-maws" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diklatmar</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotter</span>
+
+<span class="n">maws</span> <span class="o">=</span> <span class="n">plotter</span><span class="p">(</span><span class="n">img_dir</span><span class="o">=</span><span class="n">imdir</span><span class="p">)</span>
+<span class="n">maws</span><span class="o">.</span><span class="n">plot_aws_location</span><span class="p">(</span><span class="n">awslocs1</span><span class="o">=</span><span class="n">locs1</span><span class="p">,</span> <span class="n">awslocs2</span><span class="o">=</span><span class="n">locs2</span><span class="p">)</span>
+<span class="c1"># maws.plot_aws_location()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-07 14:04:42 :	I	Using default extents = [90, 145, -15, 15]
+2025-05-07 14:04:42 :	I	Creating plot, please kindly wait...
+</pre></div>
+</div>
+<img alt="../_images/3ccae4804d2e956da858a02e06144da6b6edc45b45db90a2f4f394b4bf03c2b9.png" src="../_images/3ccae4804d2e956da858a02e06144da6b6edc45b45db90a2f4f394b4bf03c2b9.png" />
+</div>
+</div>
+</section>
+<section id="pertanyaan-1">
+<h4>!!! Pertanyaan 1 !!!<a class="headerlink" href="#pertanyaan-1" title="Link to this heading">#</a></h4>
+<p>Coba buat plot berisi lokasi MAWS disekitar wilayah kerja anda</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="catatan">
+<h3>Catatan !!!<a class="headerlink" href="#catatan" title="Link to this heading">#</a></h3>
+<p>Beberapa data MAWS tidak tersedia secara lengkap untuk periode 2023–2024.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="akses-data">
+<h1>Akses Data<a class="headerlink" href="#akses-data" title="Link to this heading">#</a></h1>
+<p>Data observasi yang didapatkan dari MAWS disimpan dalam file dengan format <code class="docutils literal notranslate"><span class="pre">.parquet</span></code>. Format data ini dipilih karena efisiensi dalam penyimpanan dan pengambilan data. Selain itu, format ini menyediakan skema kompresi dan penyandian berkinerja tinggi untuk menangani data yang kompleks dalam jumlah besar dan didukung oleh banyak bahasa pemrograman dan alat analisis.</p>
+<p>Untuk memuat atau membaca data, kita akan memerlukan pustaka python <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. Pada bahasan berikut akan diberikan contoh mengakses data secara manual maupun dengan menggunakan modul yang telah disiapkan.</p>
+<section id="contoh-akses-data">
+<h2>Contoh akses data<a class="headerlink" href="#contoh-akses-data" title="Link to this heading">#</a></h2>
+<section id="akses-data-secara-manual">
+<h3>Akses data secara manual<a class="headerlink" href="#akses-data-secara-manual" title="Link to this heading">#</a></h3>
+<section id="definisikan-lokasi-path-file">
+<h4>Definisikan lokasi/path file<a class="headerlink" href="#definisikan-lokasi-path-file" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=12/23.parquet&quot;</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Pada pelatihan ini, file disusun berdasarkan tahun, bulan, dan tanggal. </span>
+<span class="sd">Berikut merupakan contoh untuk mengakses satu tanggal (23) pada tahun 2024 bulan 12 untuk AWS_Maritim__Ujung_Kulon</span>
+<span class="sd">&#39;&#39;&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data-menggunakan-pustaka-pandas">
+<h4>Load data menggunakan pustaka Pandas<a class="headerlink" href="#load-data-menggunakan-pustaka-pandas" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_maws</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="c1"># data_maws.index = pd.to_datetime(data_maws.index, format=&quot;%Y-%m-%d %H:%M:%S&quot;)</span>
+<span class="n">data_maws</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>windspeed</th>
+      <th>winddir</th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>pressure</th>
+      <th>rain</th>
+      <th>solrad</th>
+      <th>netrad</th>
+      <th>watertemp</th>
+      <th>waterlevel</th>
+      <th>ta_min</th>
+      <th>ta_max</th>
+      <th>pancilevel</th>
+      <th>pancitemp</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-12-23 02:57:00</th>
+      <td>4.7</td>
+      <td>17.0</td>
+      <td>26.4</td>
+      <td>91.5</td>
+      <td>1010.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 02:58:00</th>
+      <td>4.7</td>
+      <td>17.0</td>
+      <td>26.5</td>
+      <td>92.1</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 02:59:00</th>
+      <td>4.8</td>
+      <td>16.0</td>
+      <td>26.5</td>
+      <td>91.6</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 03:00:00</th>
+      <td>5.2</td>
+      <td>15.0</td>
+      <td>26.6</td>
+      <td>91.7</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 03:01:00</th>
+      <td>4.8</td>
+      <td>16.0</td>
+      <td>26.6</td>
+      <td>91.1</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 17:30:00</th>
+      <td>5.1</td>
+      <td>13.0</td>
+      <td>26.8</td>
+      <td>92.7</td>
+      <td>1009.1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 17:31:00</th>
+      <td>4.4</td>
+      <td>11.0</td>
+      <td>26.8</td>
+      <td>92.6</td>
+      <td>1009.1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 17:32:00</th>
+      <td>4.9</td>
+      <td>11.0</td>
+      <td>26.9</td>
+      <td>92.6</td>
+      <td>1009.1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 17:33:00</th>
+      <td>5.0</td>
+      <td>12.0</td>
+      <td>26.9</td>
+      <td>92.6</td>
+      <td>1009.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-12-23 17:34:00</th>
+      <td>4.1</td>
+      <td>15.0</td>
+      <td>26.9</td>
+      <td>92.8</td>
+      <td>1009.1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>877 rows × 14 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">data_maws</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_maws</span><span class="p">[</span><span class="s1">&#39;rh&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># width=10, height=5 (dalam satuan inch)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Grafik&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Waktu&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$RH \ [$%$]$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="o">%</span><span class="k">time</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/867b0ed310df607df477fb519fe2fc95bd1604782c716fbef22744d6603c7a14.png" src="../_images/867b0ed310df607df477fb519fe2fc95bd1604782c716fbef22744d6603c7a14.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7 μs, sys: 0 ns, total: 7 μs
+Wall time: 13.8 μs
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pertanyaan-2">
+<h4>!!! Pertanyaan 2 !!!<a class="headerlink" href="#pertanyaan-2" title="Link to this heading">#</a></h4>
+<p>Mengakses dan membuat grafik sederhana untuk parameter suhu udara dan kelembapan nisbi</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bagaimana-memuat-data-selama-satu-bulan">
+<h4>Bagaimana memuat data selama satu bulan?<a class="headerlink" href="#bagaimana-memuat-data-selama-satu-bulan" title="Link to this heading">#</a></h4>
+<section id="membuat-daftar-path-file-yang-terdapat-pada-satu-direktori-bulan-tertentu">
+<h5>Membuat daftar path file yang terdapat pada satu direktori bulan tertentu<a class="headerlink" href="#membuat-daftar-path-file-yang-terdapat-pada-satu-direktori-bulan-tertentu" title="Link to this heading">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">path2dir</span> <span class="o">=</span> <span class="s2">&quot;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11&quot;</span>
+<span class="n">fl_path_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path2dir</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path2dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.parquet&#39;</span><span class="p">)])</span>
+<span class="n">fl_path_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/01.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/02.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/03.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/04.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/05.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/06.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/07.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/08.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/09.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/10.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/11.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/12.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/13.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/14.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/15.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/16.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/17.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/18.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/19.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/20.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/21.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/22.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/23.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/24.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/25.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/26.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/27.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/28.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/29.parquet&#39;,
+ &#39;/data/local/marine-training/data/MATPEL_03/MAWS_BMKG/1000000009-AWS_Maritim__Ujung_Kulon/Year=2024/Month=11/30.parquet&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="membaca-dan-memuat-data">
+<h5>Membaca dan memuat data<a class="headerlink" href="#membaca-dan-memuat-data" title="Link to this heading">#</a></h5>
+<p>Membaca masing-masing file harian dalam bentuk dataframe kemudian menyimpannya ke dalam list, selanjutnya menggabungkannya menggunakan <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">fl</span> <span class="ow">in</span> <span class="n">fl_path_list</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">fl</span><span class="p">)</span>
+    <span class="n">df_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    
+<span class="n">df_month</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span>
+<span class="n">df_month</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>windspeed</th>
+      <th>winddir</th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>pressure</th>
+      <th>rain</th>
+      <th>solrad</th>
+      <th>netrad</th>
+      <th>watertemp</th>
+      <th>waterlevel</th>
+      <th>ta_min</th>
+      <th>ta_max</th>
+      <th>pancilevel</th>
+      <th>pancitemp</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-11-01 00:00:00</th>
+      <td>0.0</td>
+      <td>91.0</td>
+      <td>26.8</td>
+      <td>92.5</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.195</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:01:00</th>
+      <td>0.1</td>
+      <td>84.0</td>
+      <td>26.9</td>
+      <td>92.2</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.196</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:02:00</th>
+      <td>0.2</td>
+      <td>88.0</td>
+      <td>26.9</td>
+      <td>92.4</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.186</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:03:00</th>
+      <td>0.6</td>
+      <td>103.0</td>
+      <td>26.9</td>
+      <td>92.2</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.199</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:04:00</th>
+      <td>0.9</td>
+      <td>88.0</td>
+      <td>27.0</td>
+      <td>91.4</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.201</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:55:00</th>
+      <td>0.4</td>
+      <td>113.0</td>
+      <td>25.8</td>
+      <td>98.8</td>
+      <td>1008.8</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.192</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:56:00</th>
+      <td>0.5</td>
+      <td>113.0</td>
+      <td>25.8</td>
+      <td>98.8</td>
+      <td>1008.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.184</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:57:00</th>
+      <td>0.5</td>
+      <td>110.0</td>
+      <td>25.8</td>
+      <td>98.8</td>
+      <td>1008.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.182</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:58:00</th>
+      <td>0.4</td>
+      <td>110.0</td>
+      <td>25.8</td>
+      <td>98.7</td>
+      <td>1008.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.183</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:59:00</th>
+      <td>0.4</td>
+      <td>110.0</td>
+      <td>25.7</td>
+      <td>98.6</td>
+      <td>1008.9</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.186</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>39561 rows × 14 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">df_month</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_month</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># width=10, height=5 (dalam satuan inch)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Grafik&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Waktu&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$Air \ Temp \ [\circ C]$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/979436e2de58e256ed9ff878a0a24bc8eaa1c322c24d1fb29073a068af34425e.png" src="../_images/979436e2de58e256ed9ff878a0a24bc8eaa1c322c24d1fb29073a068af34425e.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="bagaimana-menyeleksi-data-dari-resolusi-tiap-menit-menjadi-data-setiap-10-menit">
+<h4>Bagaimana menyeleksi data dari resolusi tiap menit menjadi data setiap 10 menit?<a class="headerlink" href="#bagaimana-menyeleksi-data-dari-resolusi-tiap-menit-menjadi-data-setiap-10-menit" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_month_10min</span> <span class="o">=</span> <span class="n">df_month</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;10min&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">df_month_10min</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>windspeed</th>
+      <th>winddir</th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>pressure</th>
+      <th>rain</th>
+      <th>solrad</th>
+      <th>netrad</th>
+      <th>watertemp</th>
+      <th>waterlevel</th>
+      <th>ta_min</th>
+      <th>ta_max</th>
+      <th>pancilevel</th>
+      <th>pancitemp</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-11-01 00:00:00</th>
+      <td>0.0</td>
+      <td>91.0</td>
+      <td>26.8</td>
+      <td>92.5</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.195</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:10:00</th>
+      <td>0.5</td>
+      <td>89.0</td>
+      <td>27.3</td>
+      <td>91.9</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.209</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:20:00</th>
+      <td>0.9</td>
+      <td>95.0</td>
+      <td>27.6</td>
+      <td>91.0</td>
+      <td>1010.6</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.208</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:30:00</th>
+      <td>0.1</td>
+      <td>88.0</td>
+      <td>27.9</td>
+      <td>90.1</td>
+      <td>1010.8</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.196</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-01 00:40:00</th>
+      <td>0.7</td>
+      <td>92.0</td>
+      <td>28.4</td>
+      <td>88.5</td>
+      <td>1010.8</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.193</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:10:00</th>
+      <td>0.3</td>
+      <td>89.0</td>
+      <td>25.4</td>
+      <td>98.5</td>
+      <td>1008.2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.259</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:20:00</th>
+      <td>0.1</td>
+      <td>123.0</td>
+      <td>25.4</td>
+      <td>98.6</td>
+      <td>1008.5</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.237</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:30:00</th>
+      <td>0.0</td>
+      <td>112.0</td>
+      <td>25.5</td>
+      <td>98.7</td>
+      <td>1008.5</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.245</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:40:00</th>
+      <td>0.8</td>
+      <td>113.0</td>
+      <td>25.5</td>
+      <td>98.6</td>
+      <td>1008.6</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.230</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-11-30 23:50:00</th>
+      <td>0.3</td>
+      <td>103.0</td>
+      <td>25.7</td>
+      <td>98.9</td>
+      <td>1008.7</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.213</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>4320 rows × 14 columns</p>
+</div></div></div>
+</div>
+<section id="penting">
+<h5>!!!!! PENTING !!!!!<a class="headerlink" href="#penting" title="Link to this heading">#</a></h5>
+<p>Mohon membaca lebih lanjut mengenai resampling:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#dateoffset-objects">Time Offset String</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#resampling">User guide</a></p></li>
+</ol>
+</section>
+</section>
+<section id="pertanyaan-3">
+<h4>!!! Pertanyaan 3 !!!<a class="headerlink" href="#pertanyaan-3" title="Link to this heading">#</a></h4>
+<p>Mengakses dan membuat grafik sederhana untuk parameter suhu udara dan kelembapan nisbi untuk periode 1 bulan dengan resolusi temporal 1 jam</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="akses-data-menggunakan-modul-yang-telah-disiapkan">
+<h3>Akses data menggunakan modul yang telah disiapkan<a class="headerlink" href="#akses-data-menggunakan-modul-yang-telah-disiapkan" title="Link to this heading">#</a></h3>
+<p>Pada bagian <a class="reference internal" href="#impor-modul"><span class="xref myst">impor pustaka</span></a> di awal notebook ini, kita telah mengimpor modul yang telah disiapkan:  <code class="docutils literal notranslate"><span class="pre">diklatmar</span></code>. Pada modul tersebut terdapat submodul: <code class="docutils literal notranslate"><span class="pre">plotter</span></code> dan <code class="docutils literal notranslate"><span class="pre">loader</span></code>. Submodul <code class="docutils literal notranslate"><span class="pre">plotter</span></code> digunakan untuk keperluan plotting sedangkan <code class="docutils literal notranslate"><span class="pre">loader</span></code> digunakan untuk keperluan mengakses dan memuat data. Berikut merupakan contoh untuk menggunakan submodul <code class="docutils literal notranslate"><span class="pre">loader</span></code> untuk mengakses data. Bedanya dengan mteode manual sebelumnya, memuat data menggunakan submodul <code class="docutils literal notranslate"><span class="pre">loader</span></code> akan langsung memuat data satu bulan.</p>
+<section id="inisialisasi-submodul-dengan-direktori-data">
+<h4>Inisialisasi submodul dengan direktori data<a class="headerlink" href="#inisialisasi-submodul-dengan-direktori-data" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_load</span> <span class="o">=</span> <span class="n">loader</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="n">dir_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="muat-data-aws">
+<h4>Muat data AWS<a class="headerlink" href="#muat-data-aws" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contoh ini menggunakan data MAWS Ujung Kulon</span>
+<span class="n">id_aws</span> <span class="o">=</span> <span class="mi">1000000009</span>
+<span class="n">tahun</span> <span class="o">=</span> <span class="mi">2024</span>
+<span class="n">bulan</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">aws_data</span> <span class="o">=</span> <span class="n">data_load</span><span class="o">.</span><span class="n">maws_data</span><span class="p">(</span>
+    <span class="n">id_aws</span><span class="o">=</span><span class="n">id_aws</span><span class="p">,</span>
+    <span class="n">year</span><span class="o">=</span><span class="n">tahun</span><span class="p">,</span>
+    <span class="n">month</span><span class="o">=</span><span class="n">bulan</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-07 14:05:14 :	I	Found AWS id: 1000000009
+2025-05-07 14:05:14 :	I	Found year: 2024
+2025-05-07 14:05:14 :	I	Found month: 10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-07 14:05:14 :	I	Loaded 10 files with 13535 records.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aws_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>windspeed</th>
+      <th>winddir</th>
+      <th>temp</th>
+      <th>rh</th>
+      <th>pressure</th>
+      <th>rain</th>
+      <th>solrad</th>
+      <th>netrad</th>
+      <th>watertemp</th>
+      <th>waterlevel</th>
+      <th>ta_min</th>
+      <th>ta_max</th>
+      <th>pancilevel</th>
+      <th>pancitemp</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-10-22 00:00:00</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1012.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.160</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-22 00:01:00</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1012.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.153</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-22 00:02:00</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1012.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.159</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-22 00:03:00</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1012.3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.159</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-22 00:04:00</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1012.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2.164</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2024-10-31 23:55:00</th>
+      <td>0.3</td>
+      <td>101.0</td>
+      <td>26.8</td>
+      <td>92.1</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.180</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-31 23:56:00</th>
+      <td>0.0</td>
+      <td>92.0</td>
+      <td>26.9</td>
+      <td>92.1</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.182</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-31 23:57:00</th>
+      <td>0.1</td>
+      <td>89.0</td>
+      <td>26.8</td>
+      <td>92.2</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.192</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-31 23:58:00</th>
+      <td>0.3</td>
+      <td>83.0</td>
+      <td>26.9</td>
+      <td>92.4</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.181</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2024-10-31 23:59:00</th>
+      <td>0.5</td>
+      <td>95.0</td>
+      <td>26.8</td>
+      <td>92.7</td>
+      <td>1010.4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.184</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>13535 rows × 14 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="muat-dan-simpan-ke-dalam-file-csv">
+<h4>Muat dan simpan ke dalam file csv<a class="headerlink" href="#muat-dan-simpan-ke-dalam-file-csv" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contoh ini menggunakan data MAWS Ujung Kulon</span>
+<span class="n">id_aws</span> <span class="o">=</span> <span class="mi">1000000009</span>
+<span class="n">tahun</span> <span class="o">=</span> <span class="mi">2024</span>
+<span class="n">bulan</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dir_saving</span> <span class="o">=</span> <span class="s1">&#39;/home/dika/Diklat_Mar_2025/results/csv_files&#39;</span>
+
+<span class="n">aws_data</span> <span class="o">=</span> <span class="n">data_load</span><span class="o">.</span><span class="n">maws_data</span><span class="p">(</span>
+    <span class="n">id_aws</span><span class="o">=</span><span class="n">id_aws</span><span class="p">,</span>
+    <span class="n">year</span><span class="o">=</span><span class="n">tahun</span><span class="p">,</span>
+    <span class="n">month</span><span class="o">=</span><span class="n">bulan</span><span class="p">,</span>
+    <span class="n">save_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sv_dir</span><span class="o">=</span><span class="n">dir_saving</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-05-07 14:05:14 :	I	Found AWS id: 1000000009
+2025-05-07 14:05:14 :	I	Found year: 2024
+2025-05-07 14:05:14 :	I	Found month: 10
+2025-05-07 14:05:14 :	I	Loaded 10 files with 13535 records.
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PermissionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">bulan</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">dir_saving</span> <span class="o">=</span> <span class="s1">&#39;/home/dika/Diklat_Mar_2025/results/csv_files&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">aws_data</span> <span class="o">=</span> <span class="n">data_load</span><span class="o">.</span><span class="n">maws_data</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">id_aws</span><span class="o">=</span><span class="n">id_aws</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">year</span><span class="o">=</span><span class="n">tahun</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">month</span><span class="o">=</span><span class="n">bulan</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">save_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">sv_dir</span><span class="o">=</span><span class="n">dir_saving</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="p">)</span>
+
+<span class="nn">File ~/marinemet-training/4_/diklatmar/loader.py:84,</span> in <span class="ni">loader.maws_data</span><span class="nt">(self, id_aws, year, month, save_data, sv_dir)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="bp">self</span><span class="o">.</span><span class="n">logging</span><span class="p">(</span><span class="n">MSG_INFO</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">parquet_files</span><span class="p">)</span><span class="si">}</span><span class="s2"> files with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_month</span><span class="p">)</span><span class="si">}</span><span class="s2"> records.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="k">if</span> <span class="n">save_data</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">84</span>     <span class="n">dir2sv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">sv_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="n">pth2sv</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sv_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">id_aws</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">year_str</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">month_str</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span>     <span class="n">df_month</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">pth2sv</span><span class="p">)</span>
+
+<span class="nn">File &lt;frozen os&gt;:217,</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
+
+<span class="nn">File &lt;frozen os&gt;:217,</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
+
+<span class="nn">File &lt;frozen os&gt;:227,</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
+
+<span class="ne">PermissionError</span>: [Errno 13] Permission denied: &#39;/home/dika/Diklat_Mar_2025&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pertanyaan-4">
+<h4>!!! Pertanyaan 4 !!!<a class="headerlink" href="#pertanyaan-4" title="Link to this heading">#</a></h4>
+<p>Mengakses data MAWS disekitar anda selama satu tahun. Buatlah serta membuat grafik sederhana</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./4_"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00_Intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pengolahan data MAWS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../author.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">About the authors</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pengolahan data MAWS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#impor-pustaka-python-yang-dibutuhkan">Impor pustaka python yang dibutuhkan <a id="impor-modul"></a></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data">Lokasi Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-data-diklat">Lokasi Data Diklat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokasi-meta-file">Lokasi Meta file</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-aws-existing">Metadata AWS Existing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buka-metadata-1">Buka metadata 1</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata-aws-mms-1">Metadata AWS MMS 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#buka-metadata-2">Buka metadata 2</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-lokasi-maws">Plot lokasi MAWS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-lokasi-maws-berdasarkan-metadata">Load lokasi MAWS berdasarkan metadata</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-maws">Plot MAWS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-1">!!! Pertanyaan 1 !!!</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan">Catatan !!!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data">Akses Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-akses-data">Contoh akses data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data-secara-manual">Akses data secara manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-lokasi-path-file">Definisikan lokasi/path file</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-menggunakan-pustaka-pandas">Load data menggunakan pustaka Pandas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-2">!!! Pertanyaan 2 !!!</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-memuat-data-selama-satu-bulan">Bagaimana memuat data selama satu bulan?</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-daftar-path-file-yang-terdapat-pada-satu-direktori-bulan-tertentu">Membuat daftar path file yang terdapat pada satu direktori bulan tertentu</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-dan-memuat-data">Membaca dan memuat data</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bagaimana-menyeleksi-data-dari-resolusi-tiap-menit-menjadi-data-setiap-10-menit">Bagaimana menyeleksi data dari resolusi tiap menit menjadi data setiap 10 menit?</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#penting">!!!!! PENTING !!!!!</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-3">!!! Pertanyaan 3 !!!</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data-menggunakan-modul-yang-telah-disiapkan">Akses data menggunakan modul yang telah disiapkan</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-submodul-dengan-direktori-data">Inisialisasi submodul dengan direktori data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muat-data-aws">Muat data AWS</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#muat-dan-simpan-ke-dalam-file-csv">Muat dan simpan ke dalam file csv</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pertanyaan-4">!!! Pertanyaan 4 !!!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Tim Teknis Direktorat Meteorologi Maritim
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

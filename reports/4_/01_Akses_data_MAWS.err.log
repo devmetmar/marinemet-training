@@ -1,0 +1,80 @@
+Traceback (most recent call last):
+  File "/opt/conda/envs/ofs/lib/python3.13/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/opt/conda/envs/ofs/lib/python3.13/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/conda/envs/ofs/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/opt/conda/envs/ofs/lib/python3.13/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/opt/conda/envs/ofs/lib/python3.13/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/opt/conda/envs/ofs/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/conda/envs/ofs/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Contoh ini menggunakan data MAWS Ujung Kulon
+id_aws = 1000000009
+tahun = 2024
+bulan = 10
+dir_saving = '/home/dika/Diklat_Mar_2025/results/csv_files'
+
+aws_data = data_load.maws_data(
+    id_aws=id_aws,
+    year=tahun,
+    month=bulan,
+    save_data=True,
+    sv_dir=dir_saving
+)
+------------------
+
+----- stdout -----
+2025-05-07 14:05:14 :	I	Found AWS id: 1000000009
+2025-05-07 14:05:14 :	I	Found year: 2024
+2025-05-07 14:05:14 :	I	Found month: 10
+2025-05-07 14:05:14 :	I	Loaded 10 files with 13535 records.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mPermissionError[39m                           Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[27][39m[32m, line 7[39m
+[32m      4[39m bulan = [32m10[39m
+[32m      5[39m dir_saving = [33m'[39m[33m/home/dika/Diklat_Mar_2025/results/csv_files[39m[33m'[39m
+[32m----> [39m[32m7[39m aws_data = [43mdata_load[49m[43m.[49m[43mmaws_data[49m[43m([49m
+[32m      8[39m [43m    [49m[43mid_aws[49m[43m=[49m[43mid_aws[49m[43m,[49m
+[32m      9[39m [43m    [49m[43myear[49m[43m=[49m[43mtahun[49m[43m,[49m
+[32m     10[39m [43m    [49m[43mmonth[49m[43m=[49m[43mbulan[49m[43m,[49m
+[32m     11[39m [43m    [49m[43msave_data[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m
+[32m     12[39m [43m    [49m[43msv_dir[49m[43m=[49m[43mdir_saving[49m
+[32m     13[39m [43m)[49m
+
+[36mFile [39m[32m~/marinemet-training/4_/diklatmar/loader.py:84[39m, in [36mloader.maws_data[39m[34m(self, id_aws, year, month, save_data, sv_dir)[39m
+[32m     81[39m [38;5;28mself[39m.logging(MSG_INFO, [33mf[39m[33m"[39m[33mLoaded [39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(parquet_files)[38;5;132;01m}[39;00m[33m files with [39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(df_month)[38;5;132;01m}[39;00m[33m records.[39m[33m"[39m)
+[32m     83[39m [38;5;28;01mif[39;00m save_data:
+[32m---> [39m[32m84[39m     dir2sv = [43mos[49m[43m.[49m[43mmakedirs[49m[43m([49m[43msv_dir[49m[43m,[49m[43m [49m[43mexist_ok[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
+[32m     85[39m     pth2sv = [33mf[39m[33m"[39m[38;5;132;01m{[39;00msv_dir[38;5;132;01m}[39;00m[33m/[39m[38;5;132;01m{[39;00mid_aws[38;5;132;01m}[39;00m[33m_[39m[38;5;132;01m{[39;00myear_str[38;5;132;01m}[39;00m[33m_[39m[38;5;132;01m{[39;00mmonth_str[38;5;132;01m}[39;00m[33m.csv[39m[33m"[39m
+[32m     86[39m     df_month.to_csv(pth2sv)
+
+[36mFile [39m[32m<frozen os>:217[39m, in [36mmakedirs[39m[34m(name, mode, exist_ok)[39m
+
+[36mFile [39m[32m<frozen os>:217[39m, in [36mmakedirs[39m[34m(name, mode, exist_ok)[39m
+
+[36mFile [39m[32m<frozen os>:227[39m, in [36mmakedirs[39m[34m(name, mode, exist_ok)[39m
+
+[31mPermissionError[39m: [Errno 13] Permission denied: '/home/dika/Diklat_Mar_2025'
+
