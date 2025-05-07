@@ -23,3 +23,7 @@ chapters:
   - file: 3_/001_Akses_Data
   - file: 3_/002_Pengolahan_Data
   - file: 3_/003_Verifikasi
+- file: 4_/00_Intro
+  sections:
+  - file: 4_/01_Akses_data_MAWS
+- file: author
