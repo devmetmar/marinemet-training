@@ -43,7 +43,7 @@ os.mkdir("new_directory")
 
 ----- stdout -----
 /home/tyo/marinemet-training/1_
-['1_0_intro.ipynb', '1_1_1_understanding_python_conda.ipynb', '1_1_2_jupyterlab.ipynb', '1_1_3_python_basic_syntax.ipynb', '1_1_4_python_function_mod_lib.ipynb', '1_2_python_libraries.ipynb', '1_3_data_manipulation.ipynb', '1_4_data_visualization.ipynb', 'Test.csv', '.ipynb_checkpoints', 'output.txt', 'new_directory']
+['1_0_intro.ipynb', '1_1_1_understanding_python_conda.ipynb', '1_1_2_jupyterlab.ipynb', '1_1_3_python_basic_syntax.ipynb', '1_1_4_python_function_mod_lib.ipynb', '1_2_python_libraries.ipynb', '1_3_data_manipulation.ipynb', 'Test.csv', '.ipynb_checkpoints', 'output.txt', 'new_directory', '1_4_data_visualization.ipynb']
 ------------------
 
 [31m---------------------------------------------------------------------------[39m
